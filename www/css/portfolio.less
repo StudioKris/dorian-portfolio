@@ -4,6 +4,11 @@
 @span: 200px;
 @row: 350px;
 
+@text_color1: black;
+@text_color2: #790005;
+
+@font-face { font-family: Altera; src: url('fonts/altera.ttf'); } 
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -14,21 +19,54 @@ body {
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space:nowrap;
+	font-family: Altera;
 }
 
 .header {
-	width: 100%;
-	position: fixed;
+	float: left;
+	height: 186px;
+	position: relative;
+}
+
+.header-title {
+	width: 462px;
+	margin-top: 24px;
+	margin-left: 4px;
+	font-size: 63px;
+	text-align: right;
+	float: left;
+	background-image: url('images/underline.png');
+	background-repeat:no-repeat;
+	background-position:right 49px;
+}
+.header-subtitle {
+	font-size: 41px;
+	color: @text_color2;
+}
+
+.header-menu {
+	float:left;
+	margin-top: 52px;
+	margin-left: 56px;
 }
 
 .header-menu li{
 	line-style:none;
 	float:left;
+	font-size: 58px;
+	margin-right: 65px;
+}
+
+.logo {
+	height: 254px;
+	width: 236px;
+	margin-top: 16px;
+	margin-left: 84px;
+	background-image: url('images/logo.png');
+	float: left;
 }
 
 .content {
-	top: 186px;
-	position: absolute;
 	min-width: 100%;
 	float: left;
 	height: @content_height;
@@ -37,7 +75,7 @@ body {
 .pf-item {
 	display: inline-block;
 	height: @content_height;
-	margin-left: -10px;
+	margin-left: -83px;
 }
 
 .pf-item-title {
@@ -58,12 +96,16 @@ body {
 }
 .pf-item-title > span {
 	display: block;
+	position: relative;
+	right: -68px;
 	text-align: right;
+	font-size: 100px;
+	color: @text_color2;
 	-webkit-user-select: none;
 }
 
 .pf-item-content {
-	margin-left: 30px;
+	margin-left: 95px;
 }
 
 .collumn {
@@ -113,11 +155,11 @@ footer {
 }
 
 .test1 {
-	background-color: #F5FFF5;
+	background-color: #55FF55;
 }
 .test2 {
-	background-color: #F5F5FF;
+	background-color: #5555FF;
 }
 .test3 {
-	background-color: #FFF5F5;
+	background-color: #FF5555;
 }
