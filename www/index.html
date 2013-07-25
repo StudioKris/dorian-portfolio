@@ -1,9 +1,56 @@
 <html>
 	<head>
-		<title>Portfolio</title>
+		<title>@@title@@</title>
 		<link href="css/portfolio.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<div></div>
+		<div class="header">
+			<div>
+				@@header-title@@
+			</div>
+			<ul class="header-menu">
+				<li><a href="#@@graphics-id@@">@@graphics@@</a></li>
+				<li><a href="#@@illustration-id@@">@@illustration@@</a></li>
+				<li><a href="#@@profile-id@@">@@profile@@</a></li>
+			</ul>
+		</div>
+		<div class="content">
+			<div class="pf-item">
+				<div id="@@graphics-id@@" class="pf-item-title">
+					<span>@@graphics@@</span>
+				</div>
+				<div class="pf-item-content">
+					<div class="collumn">
+						<div class="test1 span2 row2"></div>
+					</div>
+					<div class="collumn">
+						<div class="test2 span3 row1"></div>
+						<div class="test3 span4 row1"></div>
+					</div>
+				</div>
+			</div>
+			<div class="pf-item">
+				<div id="@@illustration-id@@" class="pf-item-title">
+					<span>@@illustration@@</span>
+				</div>
+				<div class="pf-item-content">
+					<div class="collumn">
+						<div class="test1 span2 row2"></div>
+					</div>
+				</div>
+			</div>
+			<div class="pf-item">
+				<div id="@@profile-id@@" class="pf-item-title">
+					<span>@@profile@@</span>
+				</div>
+				<div class="pf-item-content">
+					<div class="collumn">
+						<div class="test1 span2 row2"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+		</footer>
 	</body>
 </html>

@@ -1,0 +1,123 @@
+@import "elements.less";
+
+@content_height: 700px;
+@span: 200px;
+@row: 350px;
+
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+body {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space:nowrap;
+}
+
+.header {
+	width: 100%;
+	position: fixed;
+}
+
+.header-menu li{
+	line-style:none;
+	float:left;
+}
+
+.content {
+	top: 186px;
+	position: absolute;
+	min-width: 100%;
+	float: left;
+	height: @content_height;
+}
+
+.pf-item {
+	display: inline-block;
+	height: @content_height;
+	margin-left: -10px;
+}
+
+.pf-item-title {
+	float: left;
+	height: 0px;
+	-webkit-backface-visibility: hidden;
+	.transform(translateX(-100%) rotate(-90deg));
+
+	/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+	-webkit-transform-origin: right top;
+	-moz-transform-origin: right top;
+	-ms-transform-origin: right top;
+	-o-transform-origin: right top;
+	transform-origin: right top;
+
+	/* Should be unset in IE9+ I think. */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+.pf-item-title > span {
+	display: block;
+	text-align: right;
+	-webkit-user-select: none;
+}
+
+.pf-item-content {
+	margin-left: 30px;
+}
+
+.collumn {
+	margin-top: -10px;
+	float: left;
+}
+
+footer {
+	background-color: #F5F5F5;
+	top: 923px;
+	bottom: 0px;
+	position: fixed;
+	width: 100%;
+	.inner-shadow(0, 4px, 0px, 0.4);
+}
+
+.span {
+	margin-left: 10px;
+}
+.span1 {
+	.span;
+	width : @span;
+}
+.span2 {
+	.span;
+	width : (2 * @span);
+}
+.span3 {
+	.span;
+	width : (3 * @span);
+}
+.span4 {
+	.span;
+	width : (4 * @span);
+}
+
+.row {
+	margin-top: 10px;
+}
+.row1 {
+	.row;
+	height : @row;
+}
+.row2 {
+	.row;
+	height : (2 * @row);
+}
+
+.test1 {
+	background-color: #F5FFF5;
+}
+.test2 {
+	background-color: #F5F5FF;
+}
+.test3 {
+	background-color: #FFF5F5;
+}

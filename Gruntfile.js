@@ -6,27 +6,48 @@ module.exports = function(grunt) {
 		less: {
 			development: {
 				options: {
-					paths: ["www/css"]
+					paths: ["build/www/css"]
 				},
 				files: {
-					"www/css/portfolio.css": "www/css/portfolio.less"
+					"build/www/css/portfolio.css": "build/www/css/portfolio.less"
 				}
 			},
 			production: {
 				options: {
-					paths: ["www/css"],
+					paths: ["build/css"],
 					yuicompress: true
 				},
 				files: {
-					"www/css/portfolio.css": "www/css/portfolio.less"
+					"build/www/css/portfolio.css": "build/www/css/portfolio.less"
 				}
+			}
+		},
+		copy: {
+			development: {
+				files: [{
+						src: ['www/**'],
+						dest: 'build/'
+					}
+				]
+			}
+		},
+		includereplace: {
+			development: {
+				options: {
+					globals: grunt.file.readJSON('i18n/fr.properties'),
+					prefix: '@@',
+      				suffix: '@@'
+				},
+				src: 'build/www/*.html'
 			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-include-replace');
 
 	// Default task(s).
-	grunt.registerTask('default', ['less']);
+	grunt.registerTask('development', ['copy:development', 'includereplace:development', 'less:development']);
 
 };
