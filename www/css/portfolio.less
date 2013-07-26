@@ -48,13 +48,16 @@ body {
 	float:left;
 	margin-top: 52px;
 	margin-left: 56px;
-}
-
-.header-menu li{
-	line-style:none;
-	float:left;
-	font-size: 58px;
-	margin-right: 65px;
+	li{
+		line-style:none;
+		float:left;
+		font-size: 58px;
+		margin-right: 65px;
+		a{
+			text-decoration: none;
+			color: black;
+		}
+	}
 }
 
 .logo {
@@ -93,15 +96,15 @@ body {
 
 	/* Should be unset in IE9+ I think. */
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
-.pf-item-title > span {
-	display: block;
-	position: relative;
-	right: -68px;
-	text-align: right;
-	font-size: 100px;
-	color: @text_color2;
-	-webkit-user-select: none;
+	span {
+		display: block;
+		position: relative;
+		right: -68px;
+		text-align: right;
+		font-size: 100px;
+		color: @text_color2;
+		-webkit-user-select: none;
+	}
 }
 
 .pf-item-content {
@@ -147,7 +150,7 @@ footer {
 }
 .row1 {
 	.row;
-	height : @row;
+	height : (@row - 5px);
 }
 .row2 {
 	.row;
