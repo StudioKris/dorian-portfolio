@@ -2,7 +2,7 @@
 
 @content_height: 580px;
 @span: 200px;
-@row: 290px;
+@row: 200px;
 
 @text_color1: black;
 @text_color2: #790005;
@@ -111,7 +111,7 @@ body {
 	margin-left: 95px;
 }
 
-.collumn {
+.column {
 	margin-top: -30px;
 	float: left;
 }
@@ -123,6 +123,16 @@ footer {
 	position: fixed;
 	width: 100%;
 	.inner-shadow(0, 4px, 0px, 0.4);
+}
+
+.pf-thumbnail {
+	overflow: hidden;
+	img {
+		min-height: 100%;
+		min-width: 100%;
+		max-width: 100%;
+		max-width: 100%;
+	}
 }
 
 .span {
@@ -155,14 +165,4 @@ footer {
 .row2 {
 	.row;
 	height : (2 * @row);
-}
-
-.test1 {
-	background-color: #55FF55;
-}
-.test2 {
-	background-color: #5555FF;
-}
-.test3 {
-	background-color: #FF5555;
 }

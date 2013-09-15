@@ -1,0 +1,145 @@
+<html ng-app="portfolioAdmin">
+	<head>
+		<title>@@admin-title@@</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link href="css/admin.css" rel="stylesheet" type="text/css">
+	</head>
+	<body ng-controller="AppCtrl">
+
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">@@admin-title@@</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#settings">@@admin-settings@@</a></li>
+						<li><a href="#categories">@@admin-categories@@</a></li>
+						<li><a href="#medias">@@admin-medias@@</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<button type="button" class="btn btn-lg btn-primary" ng-disabled="notChange" ng-click="saveData()">@@admin-save@@</button>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Navbar example</h1>
+				<p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+				<p>To see the difference between static and fixed top navbars, just scroll.</p>
+				<p>
+					<a class="btn btn-lg btn-primary" href="../../components/#navbar">View navbar docs »</a>
+				</p>
+			</div>
+			<div class="bs-docs-section">
+				<div class="page-header">
+					<h1 id="settings">@@admin-settings@@</h1>
+				</div>
+				<div>
+					<form role="form">
+						<div class="form-group">
+							<label for="settings-title">@@admin-settings-title@@</label>
+							<input type="text" class="form-control" id="settings-title" ng-model="data.settings.title" ng-change="notChange = false">
+
+							<label for="settings-subtitle">@@admin-settings-subtitle@@</label>
+							<input type="text" class="form-control" id="settings-subtitle" ng-model="data.settings.subtitle" ng-change="notChange = false">
+
+							<label for="settings-contact-title">@@admin-settings-contact-title@@</label>
+							<input type="text" class="form-control" id="settings-contact-title" ng-model="data.settings.contact.title" ng-change="notChange = false">
+
+							<label for="settings-contact-content">@@admin-settings-contact-content@@</label>
+							<textarea rows="5" class="form-control" id="settings-contact-title" ng-model="data.settings.contact.content" ng-change="notChange = false"></textarea>
+
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="bs-docs-section">
+				<div class="page-header">
+					<h1 id="categories">@@admin-categories@@</h1>
+				</div>
+				<div ng-repeat="category in data.categories">
+					<h2>{{category.name}}<a class="btn btn-danger right" ng-click="removeCategory(category)">@@admin-delete@@</a></h2>
+					<div class="row">
+						<div class="col-sm-3 col-md-3" ng-repeat="item in category.items">
+							<div class="thumbnail">
+								<img class="media-thumbnail" ng-src="/{{item.media.path}}">
+								<div class="caption">
+									<h3>{{item.media.name}}</h3>
+									<p>@@admin-row@@{{item.row}}</p>
+									<p>@@admin-column@@{{item.column}}</p>
+									<p>@@admin-new-column@@<input type="checkbox" ng-model="item.newColumn" ng-change="notChange = false"></p>
+									<p><a class="btn btn-danger" ng-click="removeCategoryItem(category, item)">@@admin-delete@@</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-md-3">
+							<div class="thumbnail">
+								<img class="media-thumbnail" ng-show="selectedMedia" ng-src="/{{selectedMedia.path}}">
+								<div class="caption">
+									<p>
+										<select ng-model="selectedMedia"  ng-options="media.name for media in data.medias | orderBy: 'name'"></select>
+										<div class="input-group">
+											<input type="text" class="form-control" ng-model="mediaColumn">
+											<span class="input-group-addon">@@admin-column@@</span>
+										</div>
+										<div class="input-group">
+											<input type="text" class="form-control" ng-model="mediaRow">
+											<span class="input-group-addon">@@admin-row@@</span>
+										</div>
+									</p>
+									<p><a class="btn btn-primary" ng-click="addCategoryMedia(category, selectedMedia, mediaRow, mediaColumn)">@@admin-add@@</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<form ng-submit="addCategory()" class="input-group">
+					<input type="text" class="form-control" placeholder="@@admin-categories-name@@" ng-model="newCategoryName">
+					<span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" value="@@admin-add@@">
+					</span>
+				</form>
+			</div>
+			<div class="bs-docs-section">
+				<div class="page-header">
+					<h1 id="medias">@@admin-medias@@</h1>
+				</div>
+				<div class="row">
+					<div class="col-sm-3 col-md-3" ng-repeat="media in data.medias">
+						<div class="thumbnail">
+							<img class="media-thumbnail" ng-src="/{{media.path}}">
+							<div class="caption">
+								<h3>{{media.name}}</h3>
+								<p><a class="btn btn-danger" ng-click="removeMedia(media)">@@admin-delete@@</a></p>
+							</div>
+						</div>
+					</div>
+				</div>	
+				<form action="upload.php" ng-upload>
+					<input type="file" name="file" title="@@admin-medias-file@@"/>
+					<div class="input-group">
+						<input type="text" class="form-control" name="name" ng-model="name" placeholder="@@admin-medias-name@@"/>
+						<span class="input-group-btn">
+							<input type="submit" class="btn btn-primary" value="@@admin-medias-submit@@" upload-submit="addMedia(content, completed)" />
+						</span>
+					</div>	
+				</form>
+				<div class="alert alert-danger" ng-show="uploadError">{{response.message}}</div>
+			</div>
+		</div> <!-- /container -->
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="js/ng-upload.min.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
