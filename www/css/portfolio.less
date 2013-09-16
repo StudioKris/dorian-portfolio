@@ -1,8 +1,8 @@
 @import "elements.less";
 
 @content_height: 580px;
-@span: 200px;
-@row: 200px;
+@span: 250px;
+@row: 250px;
 
 @text_color1: black;
 @text_color2: #790005;
@@ -79,6 +79,7 @@ body {
 	display: inline-block;
 	height: @content_height;
 	margin-left: -83px;
+	padding-right: 83px;
 }
 
 .pf-item-title {
@@ -113,7 +114,8 @@ body {
 
 .column {
 	margin-top: -30px;
-	float: left;
+	display: inline-block;
+	vertical-align: top;
 }
 
 footer {
@@ -154,15 +156,15 @@ footer {
 }
 .span2 {
 	.span;
-	width : (2 * @span);
+	width : (2 * @span) + 26;
 }
 .span3 {
 	.span;
-	width : (3 * @span);
+	width : (3 * @span) + 26 * 2;
 }
 .span4 {
 	.span;
-	width : (4 * @span);
+	width : (4 * @span) + 26 * 3;
 }
 
 .row {
