@@ -1,8 +1,8 @@
 @import "elements.less";
 
-@content_height: 700px;
+@content_height: 580px;
 @span: 200px;
-@row: 350px;
+@row: 200px;
 
 @text_color1: black;
 @text_color2: #790005;
@@ -32,7 +32,7 @@ body {
 	width: 462px;
 	margin-top: 24px;
 	margin-left: 4px;
-	font-size: 63px;
+	font-size: 36px;
 	text-align: right;
 	float: left;
 	background-image: url('images/underline.png');
@@ -40,7 +40,7 @@ body {
 	background-position:right 49px;
 }
 .header-subtitle {
-	font-size: 41px;
+	font-size: 24px;
 	color: @text_color2;
 }
 
@@ -51,7 +51,7 @@ body {
 	li{
 		line-style:none;
 		float:left;
-		font-size: 58px;
+		font-size: 35px;
 		margin-right: 65px;
 		a{
 			text-decoration: none;
@@ -61,8 +61,8 @@ body {
 }
 
 .logo {
-	height: 254px;
-	width: 236px;
+	height: 202px;
+	width: 188px;
 	margin-top: 16px;
 	margin-left: 84px;
 	background-image: url('images/logo.png');
@@ -111,8 +111,8 @@ body {
 	margin-left: 95px;
 }
 
-.collumn {
-	margin-top: -10px;
+.column {
+	margin-top: -30px;
 	float: left;
 }
 
@@ -125,8 +125,18 @@ footer {
 	.inner-shadow(0, 4px, 0px, 0.4);
 }
 
+.pf-thumbnail {
+	overflow: hidden;
+	img {
+		min-height: 100%;
+		min-width: 100%;
+		max-width: 100%;
+		max-width: 100%;
+	}
+}
+
 .span {
-	margin-left: 10px;
+	margin-left: 26px;
 }
 .span1 {
 	.span;
@@ -146,23 +156,13 @@ footer {
 }
 
 .row {
-	margin-top: 10px;
+	margin-top: 30px;
 }
 .row1 {
 	.row;
-	height : (@row - 5px);
+	height : (@row - 15px);
 }
 .row2 {
 	.row;
 	height : (2 * @row);
-}
-
-.test1 {
-	background-color: #55FF55;
-}
-.test2 {
-	background-color: #5555FF;
-}
-.test3 {
-	background-color: #FF5555;
 }

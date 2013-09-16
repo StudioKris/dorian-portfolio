@@ -9,7 +9,8 @@ module.exports = function(grunt) {
 					paths: ["build/www/css"]
 				},
 				files: {
-					"build/www/css/portfolio.css": "build/www/css/portfolio.less"
+					"build/www/css/portfolio.css": "build/www/css/portfolio.less",
+					"build/www/admin/css/admin.css": "build/www/admin/css/admin.less"
 				}
 			},
 			production: {
@@ -18,7 +19,8 @@ module.exports = function(grunt) {
 					yuicompress: true
 				},
 				files: {
-					"build/www/css/portfolio.css": "build/www/css/portfolio.less"
+					"build/www/css/portfolio.css": "build/www/css/portfolio.less",
+					"build/www/admin/css/admin.css": "build/www/admin/css/admin.less"
 				}
 			}
 		},
@@ -38,7 +40,7 @@ module.exports = function(grunt) {
 					prefix: '@@',
       				suffix: '@@'
 				},
-				src: 'build/www/*.html'
+				src: ['build/www/*.html','build/www/admin/*.html']
 			}
 		}
 	});
