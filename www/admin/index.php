@@ -43,61 +43,48 @@
 					<h1 id="settings">@@admin-settings@@</h1>
 				</div>
 				<div>
-					<form role="form">
-						<div class="form-group">
-							<label for="settings-title">@@admin-settings-title@@</label>
-							<input type="text" class="form-control" id="settings-title" ng-model="data.settings.title" ng-change="notChange = false">
+					<form class="form-horizontal" role="form">
+					<?php
+						$settings = array(
+							'categories.color' => 'color',
+							'categories.size' => 'int',
+							'contact.content' => 'textarea',
+							'contact.title' => 'text',
+							'header.height' => 'int',
+							'items.height' => 'int',
+							'items.left' => 'int',
+							'items.top' => 'int',
+							'items.position' => 'int',
+							'items.width' => 'int',
+							'menu.color' => 'color',
+							'menu.size' => 'int',
+							'column' => 'int',
+							'row' => 'int',
+							'page.height' => 'int',
+							'footer.bg_color' => 'color',
+							'subtitle.color' => 'color',
+							'subtitle.size' => 'int',
+							'subtitle.title' => 'text',
+							'title.color' => 'color',
+							'title.size' => 'int',
+							'title.top' => 'int',
+							'title.left' => 'int',
+							'title.width' => 'int',
+							'title.title' => 'text'
+						);
 
-							<label for="settings-subtitle">@@admin-settings-subtitle@@</label>
-							<input type="text" class="form-control" id="settings-subtitle" ng-model="data.settings.subtitle" ng-change="notChange = false">
-
-							<label for="settings-contact-title">@@admin-settings-contact-title@@</label>
-							<input type="text" class="form-control" id="settings-contact-title" ng-model="data.settings.contact.title" ng-change="notChange = false">
-
-							<label for="settings-contact-content">@@admin-settings-contact-content@@</label>
-							<textarea rows="5" class="form-control" id="settings-contact-title" ng-model="data.settings.contact.content" ng-change="notChange = false"></textarea>
-
-
-							<label for="settings-nb-row">@@admin-settings-nb-row@@</label>
-							<input type="text" class="form-control" id="settings-nb-row" ng-model="data.settings.nbRow" ng-change="notChange = false">
-
-							<label for="settings-nb-column">@@admin-settings-nb-column@@</label>
-							<input type="text" class="form-control" id="settings-nb-column" ng-model="data.settings.nbColumn" ng-change="notChange = false">
-
-
-							<label for="settings-items-width">@@admin-settings-items-width@@</label>
-							<input type="text" class="form-control" id="settings-items-width" ng-model="data.settings.items.width" ng-change="notChange = false">
-
-							<label for="settings-items-height">@@admin-settings-items-height@@</label>
-							<input type="text" class="form-control" id="settings-items-height" ng-model="data.settings.items.height" ng-change="notChange = false">
-
-							<label for="settings-items-position">@@admin-settings-items-position@@</label>
-							<input type="text" class="form-control" id="settings-items-position" ng-model="data.settings.items.position" ng-change="notChange = false">
-
-							<label for="settings-items-margin-left">@@admin-settings-items-margin-left@@</label>
-							<input type="text" class="form-control" id="settings-items-margin-left" ng-model="data.settings.items.marginLeft" ng-change="notChange = false">
-
-							<label for="settings-items-margin-top">@@admin-settings-items-margin-top@@</label>
-							<input type="text" class="form-control" id="settings-items-margin-top" ng-model="data.settings.items.marginTop" ng-change="notChange = false">
-
-
-
-							<label for="settings-subtitle-color">@@admin-settings-subtitle-color@@</label>
-							<input type="text" class="form-control" id="settings-subtitle-color" ng-model="data.settings.subtitleFontColor" ng-change="notChange = false">
-
-							<label for="settings-categories-font-color">@@admin-settings-categories-font-size@@</label>
-							<input type="text" class="form-control" id="settings-categories-font-color" ng-model="data.settings.catFontSize" ng-change="notChange = false">
-
-							<label for="settings-categories-color">@@admin-settings-categories-color@@</label>
-							<input type="text" class="form-control" id="settings-categories-color" ng-model="data.settings.catFontColor" ng-change="notChange = false">
-
-							<label for="settings-page-height">@@admin-settings-page-height@@</label>
-							<input type="text" class="form-control" id="settings-page-height" ng-model="data.settings.page.height" ng-change="notChange = false">
-
-							<label for="settings-page-bg-color">@@admin-settings-page-bg-color@@</label>
-							<input type="text" class="form-control" id="settings-page-bg-color" ng-model="data.settings.page.footer.bgColor" ng-change="notChange = false">
-
-						</div>
+						foreach ($settings as $key => $kind) {
+							$key_escaped = str_replace('.', '-', $key);
+							?>
+								<div class="form-group">
+									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-2 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
+									<div class="col-lg-2">
+										<input type="text" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false">
+									</div>
+								</div>
+							<?php
+						}
+					?>
 					</form>
 				</div>
 			</div>

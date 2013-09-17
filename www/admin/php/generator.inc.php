@@ -52,7 +52,7 @@ class Generator {
 			<div class="header-title">
 				'.$data->settings->title.'
 				<div class="header-subtitle">
-					'.$data->settings->subtitle.'
+					'.$data->settings->subtitle->title.'
 				</div>
 			</div>
 			<ul class="header-menu">
@@ -118,18 +118,12 @@ class Generator {
 
 	public static function generateCSS( $data ) {
 
-		$footer_bg_color = $data->settings->page->footer->bgColor;
-		$items_position = $data->settings->items->position;
-		$page_height = $data->settings->page->height;
-		$subtitle_font_color = $data->settings->subtitleFontColor;
-		$cat_font_size = $data->settings->catFontSize;
-		$cat_font_color = $data->settings->catFontColor;
-		$nb_row = $data->settings->nbRow;
-		$nb_column = $data->settings->nbColumn;
+		$nb_row = $data->settings->row;
+		$nb_column = $data->settings->column;
 		$items_width = $data->settings->items->width;
 		$items_height = $data->settings->items->height;
-		$items_margin_left = $data->settings->items->marginLeft;
-		$items_margin_top = $data->settings->items->marginTop;
+		$items_margin_left = $data->settings->items->left;
+		$items_margin_top = $data->settings->items->top;
 
 		$result = '
 @font-face {
@@ -149,23 +143,24 @@ body {
 }
 .header {
   float: left;
-  height: 186px;
+  height: '.$data->settings->header->height.'px;
   position: relative;
 }
 .header-title {
-  width: 462px;
-  margin-top: 24px;
-  margin-left: 4px;
-  font-size: 36px;
+  width: '.$data->settings->title->width.'px;
+  margin-top: '.$data->settings->title->top.'px;
+  margin-left: '.$data->settings->title->left.'px;
+  font-size: '.$data->settings->title->size.'px;
   text-align: right;
+  color: '.$data->settings->title->color.';
   float: left;
   background-image: url(\'images/underline.png\');
   background-repeat: no-repeat;
   background-position: right 49px;
 }
 .header-subtitle {
-  font-size: 24px;
-  color: '.$subtitle_font_color.';
+  font-size: '.$data->settings->subtitle->size.'px;
+  color: '.$data->settings->subtitle->color.';
 }
 .header-menu {
   float: left;
@@ -175,12 +170,12 @@ body {
 .header-menu li {
   line-style: none;
   float: left;
-  font-size: 35px;
+  font-size: '.$data->settings->menu->size.'px;
   margin-right: 65px;
 }
 .header-menu li a {
   text-decoration: none;
-  color: black;
+  color: '.$data->settings->menu->color.';
 }
 .logo {
   height: 202px;
@@ -196,8 +191,8 @@ body {
 }
 .pf-item {
   display: inline-block;
-  margin-left: -'.$cat_font_size.'px;
-  padding-right: '.$cat_font_size.'px;
+  margin-left: -'.$data->settings->categories->size.'px;
+  padding-right: '.$data->settings->categories->size.'px;
 }
 .pf-item-title {
   float: left;
@@ -224,21 +219,21 @@ body {
   position: relative;
   right: -68px;
   text-align: right;
-  font-size: '.$cat_font_size.'px;
-  color: '.$cat_font_color.';
+  font-size: '.$data->settings->categories->size.'px;
+  color: '.$data->settings->categories->color.';
   -webkit-user-select: none;
 }
 .pf-item-content {
-  margin-left: '.$cat_font_size.'px;
+  margin-left: '.$data->settings->categories->size.'px;
 }
 .column {
-  margin-top: '.$items_position.'px;
+  margin-top: '.$data->settings->items->position.'px;
   display: inline-block;
   vertical-align: top;
 }
 footer {
-  background-color: '.$footer_bg_color.';
-  top: '.$page_height.'px;
+  background-color: '.$data->settings->footer->bg_color.';
+  top: '.$data->settings->page->height.'px;
   bottom: 0px;
   position: fixed;
   width: 100%;
