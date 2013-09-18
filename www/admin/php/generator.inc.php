@@ -14,7 +14,7 @@ class Generator {
 		$contact_id = preg_replace( '/\\s/', '-', $contact_id );
 		$not_first = false;
 
-		$nb_row = $data->settings->nbRow;
+		$nb_row = $data->settings->row;
 
 		foreach ( $data->categories as $category ) {
 			$name = $category->name;
@@ -43,14 +43,14 @@ class Generator {
 
 		$result = '<html>
 	<head>
-		<title>'.$data->settings->title.'</title>
+		<title>'.$data->settings->title->title.'</title>
 		<link href="css/portfolio.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div class="header">
 			<div class="logo"></div>
 			<div class="header-title">
-				'.$data->settings->title.'
+				'.$data->settings->title->title.'
 				<div class="header-subtitle">
 					'.$data->settings->subtitle->title.'
 				</div>
@@ -67,7 +67,7 @@ class Generator {
 					<span>'.$data->settings->contact->title.'</span>
 				</div>
 				<div class="pf-item-content">
-					<div class="collumn">
+					<div class="collumn contact">
 						'.$data->settings->contact->content.'
 					</div>
 				</div>
@@ -154,9 +154,9 @@ body {
   text-align: right;
   color: '.$data->settings->title->color.';
   float: left;
-  background-image: url(\'images/underline.png\');
+  background-image: url(\'/'.$data->settings->header->background->path.'\');
   background-repeat: no-repeat;
-  background-position: right 49px;
+  background-position: right '.$data->settings->header->background->position.'px;
 }
 .header-subtitle {
   font-size: '.$data->settings->subtitle->size.'px;
@@ -164,26 +164,29 @@ body {
 }
 .header-menu {
   float: left;
-  margin-top: 52px;
-  margin-left: 56px;
+  margin-top: '.$data->settings->menu->left.'px;
+  margin-left: '.$data->settings->menu->left.'px;
 }
 .header-menu li {
   line-style: none;
   float: left;
   font-size: '.$data->settings->menu->size.'px;
-  margin-right: 65px;
+  margin-right: '.$data->settings->menu->gap.'px;
 }
 .header-menu li a {
   text-decoration: none;
   color: '.$data->settings->menu->color.';
 }
 .logo {
-  height: 202px;
-  width: 188px;
-  margin-top: 16px;
-  margin-left: 84px;
-  background-image: url(\'images/logo.png\');
+  height: '.$data->settings->logo->height.'px;
+  width: '.$data->settings->logo->width.'px;
+  margin-top: '.$data->settings->logo->top.'px;
+  margin-left: '.$data->settings->logo->left.'px;
+  background-image: url(\'/'.$data->settings->logo->path.'\');
   float: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 .content {
   min-width: 100%;
@@ -224,12 +227,16 @@ body {
   -webkit-user-select: none;
 }
 .pf-item-content {
-  margin-left: '.$data->settings->categories->size.'px;
+  margin-left: '.$data->settings->categories->left.'px;
 }
 .column {
   margin-top: '.$data->settings->items->position.'px;
   display: inline-block;
   vertical-align: top;
+}
+.contact {
+  color: '.$data->settings->contact->color.';
+  font-size: '.$data->settings->contact->size.'px;
 }
 footer {
   background-color: '.$data->settings->footer->bg_color.';
@@ -237,9 +244,9 @@ footer {
   bottom: 0px;
   position: fixed;
   width: 100%;
-  -webkit-box-shadow: inset 0 4px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: inset 0 4px 0px rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 4px 0px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: inset 0 '.$data->settings->page->shadow->size.'px 0px '.$data->settings->page->shadow->color.';
+  -moz-box-shadow: inset 0 '.$data->settings->page->shadow->size.'px 0px '.$data->settings->page->shadow->color.';
+  box-shadow: inset 0 '.$data->settings->page->shadow->size.'px 0px '.$data->settings->page->shadow->color.';
 }
 .pf-thumbnail {
   overflow: hidden;

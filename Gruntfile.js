@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 					prefix: '@@',
       				suffix: '@@'
 				},
-				src: ['build/www/*.html','build/www/admin/*.html']
+				src: ['build/www/*.html','build/www/admin/*.php']
 			}
 		}
 	});

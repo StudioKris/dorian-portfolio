@@ -1,4 +1,4 @@
-var app = angular.module('portfolioAdmin', ['ngUpload']);
+var app = angular.module('portfolioAdmin', ['ngUpload', 'colorpicker.module']);
 
 app.controller('AppCtrl', function($scope, $http) {
 

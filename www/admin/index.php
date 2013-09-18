@@ -3,6 +3,7 @@
 		<title>@@admin-title@@</title>
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 		<link href="css/admin.css" rel="stylesheet" type="text/css">
+		<link href="css/colorpicker.css" rel="stylesheet" type="text/css">
 	</head>
 	<body ng-controller="AppCtrl">
 
@@ -42,25 +43,40 @@
 				<div class="page-header">
 					<h1 id="settings">@@admin-settings@@</h1>
 				</div>
-				<div>
+				<div class="row">
 					<form class="form-horizontal" role="form">
 					<?php
 						$settings = array(
 							'categories.color' => 'color',
 							'categories.size' => 'int',
+							'categories.left' => 'int',
 							'contact.content' => 'textarea',
+							'contact.color' => 'color',
 							'contact.title' => 'text',
+							'contact.size' => 'int',
 							'header.height' => 'int',
+							'header.background.position' => 'int',
+							'header.background.path' => 'media',
 							'items.height' => 'int',
 							'items.left' => 'int',
 							'items.top' => 'int',
 							'items.position' => 'int',
 							'items.width' => 'int',
+							'logo.height' => 'int',
+							'logo.width' => 'int',
+							'logo.left' => 'int',
+							'logo.top' => 'int',
+							'logo.path' => 'media',
 							'menu.color' => 'color',
 							'menu.size' => 'int',
+							'menu.left' => 'int',
+							'menu.top' => 'int',
+							'menu.gap' => 'int',
 							'column' => 'int',
 							'row' => 'int',
 							'page.height' => 'int',
+							'page.shadow.size' => 'int',
+							'page.shadow.color' => 'rgba',
 							'footer.bg_color' => 'color',
 							'subtitle.color' => 'color',
 							'subtitle.size' => 'int',
@@ -75,14 +91,63 @@
 
 						foreach ($settings as $key => $kind) {
 							$key_escaped = str_replace('.', '-', $key);
+							if($kind == 'color')
+							{
 							?>
-								<div class="form-group">
-									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-2 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
-									<div class="col-lg-2">
+								<div class="form-group col-md-4">
+									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
+									<div class="col-lg-6">
+										<input colorpicker id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
+									</div>
+								</div>
+							<?php
+							}
+							else if($kind == 'rgba')
+							{
+							?>
+								<div class="form-group col-md-4">
+									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
+									<div class="col-lg-6">
+										<input colorpicker="rgba" id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
+									</div>
+								</div>
+								
+							<?php
+							}
+							else if($kind == 'media')
+							{
+							?>
+								<div class="form-group col-md-4">
+									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
+									<div class="col-lg-6">
+										<select ng-model="data.settings.<?php echo $key; ?>"  ng-options="media.path as media.name for media in data.medias | orderBy: 'name'" ng-change="notChange = false"></select>
+									</div>
+								</div>
+								
+							<?php
+							}
+							else if($kind == 'textarea')
+							{
+							?>
+								<div class="form-group col-md-4">
+									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
+									<div class="col-lg-6">
+										<textarea rows="3" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"></textarea>
+									</div>
+								</div>
+							<?php
+							}
+							else
+							{
+							?>
+								<div class="form-group col-md-4">
+									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
+									<div class="col-lg-6">
 										<input type="text" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false">
 									</div>
 								</div>
 							<?php
+							}
 						}
 					?>
 					</form>
@@ -166,6 +231,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 		<script src="js/ng-upload.min.js"></script>
+		<script src="js/bootstrap-colorpicker.js"></script>
+		<script src="js/bootstrap-colorpicker-module.js"></script>
 		<script src="js/app.js"></script>
 	</body>
 </html>
