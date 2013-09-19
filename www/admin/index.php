@@ -31,14 +31,6 @@
 		</div>
 
 		<div class="container">
-			<div class="jumbotron">
-				<h1>Navbar example</h1>
-				<p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-				<p>To see the difference between static and fixed top navbars, just scroll.</p>
-				<p>
-					<a class="btn btn-lg btn-primary" href="../../components/#navbar">View navbar docs »</a>
-				</p>
-			</div>
 			<div class="bs-docs-section">
 				<div class="page-header">
 					<h1 id="settings">@@admin-settings@@</h1>
@@ -47,106 +39,121 @@
 					<form class="form-horizontal" role="form">
 					<?php
 						$settings = array(
-							'categories.color' => 'color',
-							'categories.size' => 'int',
-							'categories.left' => 'int',
-							'contact.content' => 'textarea',
-							'contact.color' => 'color',
-							'contact.title' => 'text',
-							'contact.size' => 'int',
-							'header.height' => 'int',
-							'header.background.position' => 'int',
-							'header.background.path' => 'media',
-							'items.height' => 'int',
-							'items.left' => 'int',
-							'items.top' => 'int',
-							'items.position' => 'int',
-							'items.width' => 'int',
-							'logo.height' => 'int',
-							'logo.width' => 'int',
-							'logo.left' => 'int',
-							'logo.top' => 'int',
-							'logo.path' => 'media',
-							'menu.color' => 'color',
-							'menu.size' => 'int',
-							'menu.left' => 'int',
-							'menu.top' => 'int',
-							'menu.gap' => 'int',
-							'column' => 'int',
-							'row' => 'int',
-							'page.height' => 'int',
-							'page.shadow.size' => 'int',
-							'page.shadow.color' => 'rgba',
-							'footer.bg_color' => 'color',
-							'subtitle.color' => 'color',
-							'subtitle.size' => 'int',
-							'subtitle.title' => 'text',
-							'title.color' => 'color',
-							'title.size' => 'int',
-							'title.top' => 'int',
-							'title.left' => 'int',
-							'title.width' => 'int',
-							'title.title' => 'text'
+
+							'title.title' => array('name' => '@@admin-settings-title-title@@','kind' => 'text'),
+							'subtitle.title' => array('name' => '@@admin-settings-subtitle-title@@','kind' => 'text'),
+							'page.keywords' => array('name' => '@@admin-settings-page-keywords@@','kind' => 'text'),
+
+							'section.header' => array('name' => '@@admin-settings-header@@','kind' => 'section'),
+							'header.background.path' => array('name' => '@@admin-settings-header-background-path@@','kind' => 'media'),
+							'header.height' => array('name' => '@@admin-settings-header-height@@','kind' => 'int'),
+							'header.background.position' => array('name' => '@@admin-settings-header-background-position@@','kind' => 'int'),
+
+							'section.logo' => array('name' => '@@admin-settings-logo@@','kind' => 'section'),
+							'logo.path' => array('name' => '@@admin-settings-logo-path@@','kind' => 'media'),
+							'logo.height' => array('name' => '@@admin-settings-logo-height@@','kind' => 'int'),
+							'logo.width' => array('name' => '@@admin-settings-logo-width@@','kind' => 'int'),
+							'logo.top' => array('name' => '@@admin-settings-logo-top@@','kind' => 'int'),
+							'logo.left' => array('name' => '@@admin-settings-logo-left@@','kind' => 'int'),
+
+							'section.title' => array('name' => '@@admin-settings-title@@','kind' => 'section'),
+							'title.width' => array('name' => '@@admin-settings-title-width@@','kind' => 'int'),
+							'title.size' => array('name' => '@@admin-settings-title-size@@','kind' => 'int'),
+							'title.color' => array('name' => '@@admin-settings-title-color@@','kind' => 'color'),
+							'title.top' => array('name' => '@@admin-settings-title-top@@','kind' => 'int'),
+							'title.left' => array('name' => '@@admin-settings-title-left@@','kind' => 'int'),
+							
+							'section.subtitle' => array('name' => '@@admin-settings-subtitle@@','kind' => 'section'),
+							'subtitle.size' => array('name' => '@@admin-settings-subtitle-size@@','kind' => 'int'),
+							'subtitle.color' => array('name' => '@@admin-settings-subtitle-color@@','kind' => 'color'),
+
+							'section.menu' => array('name' => '@@admin-settings-menu@@','kind' => 'section'),
+							'menu.size' => array('name' => '@@admin-settings-menu-size@@','kind' => 'int'),
+							'menu.color' => array('name' => '@@admin-settings-menu-color@@','kind' => 'color'),
+							'menu.top' => array('name' => '@@admin-settings-menu-top@@','kind' => 'int'),
+							'menu.left' => array('name' => '@@admin-settings-menu-left@@','kind' => 'int'),
+							'menu.gap' => array('name' => '@@admin-settings-menu-gap@@','kind' => 'int'),
+
+							'section.categories' => array('name' => '@@admin-settings-categories@@','kind' => 'section'),
+							'categories.size' => array('name' => '@@admin-settings-categories-size@@','kind' => 'int'),
+							'categories.color' => array('name' => '@@admin-settings-categories-color@@','kind' => 'color'),
+							'categories.left' => array('name' => '@@admin-settings-categories-left@@','kind' => 'int'),
+							
+							'section.items' => array('name' => '@@admin-settings-items@@','kind' => 'section'),
+							'row' => array('name' => '@@admin-settings-row@@','kind' => 'int'),
+							'column' => array('name' => '@@admin-settings-column@@','kind' => 'int'),
+							'items.height' => array('name' => '@@admin-settings-items-height@@','kind' => 'int'),
+							'items.width' => array('name' => '@@admin-settings-items-width@@','kind' => 'int'),
+							'items.top' => array('name' => '@@admin-settings-items-top@@','kind' => 'int'),
+							'items.left' => array('name' => '@@admin-settings-items-left@@','kind' => 'int'),
+							'items.position' => array('name' => '@@admin-settings-items-position@@','kind' => 'int'),
+
+							'section.contact' => array('name' => '@@admin-settings-contact@@','kind' => 'section'),
+							'contact.title' => array('name' => '@@admin-settings-contact-title@@','kind' => 'text'),
+							'contact.size' => array('name' => '@@admin-settings-contact-size@@','kind' => 'int'),
+							'contact.color' => array('name' => '@@admin-settings-contact-color@@','kind' => 'color'),
+							'contact.content' => array('name' => '@@admin-settings-contact-content@@','kind' => 'textarea'),
+
+							'section.page' => array('name' => '@@admin-settings-page@@','kind' => 'section'),
+							'page.height' => array('name' => '@@admin-settings-page-height@@','kind' => 'int'),
+							'page.bg_color' => array('name' => '@@admin-settings-page-bg_color@@','kind' => 'color'),
+							'page.shadow.size' => array('name' => '@@admin-settings-page-shadow-size@@','kind' => 'int'),
+							'page.shadow.color' => array('name' => '@@admin-settings-page-shadow-color@@','kind' => 'rgba'),
+							'footer.bg_color' => array('name' => '@@admin-settings-footer-bg_color@@','kind' => 'color')
 						);
 
-						foreach ($settings as $key => $kind) {
+						foreach ($settings as $key => $data) {
 							$key_escaped = str_replace('.', '-', $key);
-							if($kind == 'color')
-							{
-							?>
-								<div class="form-group col-md-4">
-									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
-									<div class="col-lg-6">
-										<input colorpicker id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
-									</div>
-								</div>
-							<?php
+
+							if($data['kind'] == 'section') {
+								?>
+					</form>
+				</div>
+				<h3><?php echo $data['name']; ?></h3>
+				<div class="row">
+					<form class="form-horizontal" role="form">
+								<?php
 							}
-							else if($kind == 'rgba')
-							{
-							?>
-								<div class="form-group col-md-4">
-									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
-									<div class="col-lg-6">
-										<input colorpicker="rgba" id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
+							else {
+								?>
+									<div class="form-group col-md-4">
+										<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label"><?php echo $data['name']; ?></label>
+										<div class="col-lg-6">
+								<?php
+
+								switch ($data['kind']) {
+									case 'color':
+										?>
+											<input colorpicker id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
+										<?php
+										break;
+									case 'rgba':
+										?>
+											<input colorpicker="rgba" id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
+										<?php
+										break;
+									case 'media':
+										?>
+											<select class="form-control" ng-model="data.settings.<?php echo $key; ?>"  ng-options="media.path as media.name for media in data.medias | orderBy: 'name'" ng-change="notChange = false"></select>
+										<?php
+										break;
+									case 'textarea':
+										?>
+											<textarea rows="3" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"></textarea>
+										<?php
+										break;
+									
+									default:
+										?>
+											<input type="text" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>	
+										<?php
+										break;
+								}
+
+								?>
+										</div>
 									</div>
-								</div>
-								
-							<?php
-							}
-							else if($kind == 'media')
-							{
-							?>
-								<div class="form-group col-md-4">
-									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
-									<div class="col-lg-6">
-										<select ng-model="data.settings.<?php echo $key; ?>"  ng-options="media.path as media.name for media in data.medias | orderBy: 'name'" ng-change="notChange = false"></select>
-									</div>
-								</div>
-								
-							<?php
-							}
-							else if($kind == 'textarea')
-							{
-							?>
-								<div class="form-group col-md-4">
-									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
-									<div class="col-lg-6">
-										<textarea rows="3" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"></textarea>
-									</div>
-								</div>
-							<?php
-							}
-							else
-							{
-							?>
-								<div class="form-group col-md-4">
-									<label for="settings-<?php echo $key_escaped; ?>" class="col-lg-6 control-label">@@admin-settings-<?php echo $key_escaped; ?>@@</label>
-									<div class="col-lg-6">
-										<input type="text" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false">
-									</div>
-								</div>
-							<?php
+								<?php
 							}
 						}
 					?>
@@ -158,15 +165,24 @@
 					<h1 id="categories">@@admin-categories@@</h1>
 				</div>
 				<div ng-repeat="category in data.categories">
-					<h2>{{category.name}}<a class="btn btn-danger right" ng-click="removeCategory(category)">@@admin-delete@@</a></h2>
+					<div class="row">
+						<div class="col-md-8"><h2>{{category.name}}</h2></div>
+						<div class="col-md-4"><a class="btn btn-danger pull-right" ng-click="removeCategory(category)">@@admin-delete@@</a></div>
+					</div>
 					<div class="row">
 						<div class="col-sm-3 col-md-3" ng-repeat="item in category.items">
 							<div class="thumbnail">
 								<img class="media-thumbnail" ng-src="/{{item.media.path}}">
 								<div class="caption">
-									<h3>{{item.media.name}}</h3>
-									<p>@@admin-row@@{{item.row}}</p>
-									<p>@@admin-column@@{{item.column}}</p>
+									<div>
+										
+										
+									</div>
+									<div class="row">
+										<div class="col-md-9"><h3>{{item.media.name}}</h3></div>
+										<div class="col-md-3 pull-right">{{item.column}}x{{item.row}}</div>
+									</div>
+									<p><select class="form-control" ng-model="item.media.path"  ng-options="media.path as media.name for media in data.medias | orderBy: 'name'" ng-change="notChange = false"></select></p>
 									<p><a class="btn btn-danger" ng-click="removeCategoryItem(category, item)">@@admin-delete@@</a></p>
 								</div>
 							</div>
@@ -176,7 +192,7 @@
 								<img class="media-thumbnail" ng-show="selectedMedia" ng-src="/{{selectedMedia.path}}">
 								<div class="caption">
 									<p>
-										<select ng-model="selectedMedia"  ng-options="media.name for media in data.medias | orderBy: 'name'"></select>
+										<select class="form-control" ng-model="selectedMedia"  ng-options="media.name for media in data.medias | orderBy: 'name'"></select>
 										<div class="input-group">
 											<input type="text" class="form-control" ng-model="mediaColumn">
 											<span class="input-group-addon">@@admin-column@@</span>

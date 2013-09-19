@@ -45,6 +45,7 @@ class Generator {
 	<head>
 		<title>'.$data->settings->title->title.'</title>
 		<link href="css/portfolio.css" rel="stylesheet" type="text/css">
+		<meta name="keywords" content="'.$data->settings->page->keywords.'">
 	</head>
 	<body>
 		<div class="header">
@@ -106,7 +107,7 @@ class Generator {
 			}
 
 			$result .='<div offset_row="'.$offset_row.'" class="pf-thumbnail span'.$item->column.' row'.$item->row.'" style="background-image: url(\''.$item->media->path.'\');">
-			<img src="'.$item->media->path.'"/>
+			<img src="'.$item->media->path.'" alt="'.$item->media->name.'"/>
 			</div>';
 			$not_first = true;
 		}
@@ -140,6 +141,7 @@ body {
   overflow-y: hidden;
   white-space: nowrap;
   font-family: Altera;
+  background-color: '.$data->settings->page->bg_color.';
 }
 .header {
   float: left;

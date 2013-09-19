@@ -65,6 +65,7 @@ else {
 		$data->settings->page->shadow = new stdClass();
 		$data->settings->page->shadow->size = '4';
 		$data->settings->page->shadow->color = 'rgba(0, 0, 0, 0.4)';
+		$data->settings->page->bg_color = '#FFFFFF';
 		$data->settings->footer = new stdClass();
 		$data->settings->footer->bg_color = '#F5F5F5';
 		$data->settings->subtitle = new stdClass();
