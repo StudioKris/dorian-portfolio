@@ -182,7 +182,7 @@
 										<div class="col-md-9"><h3>{{item.media.name}}</h3></div>
 										<div class="col-md-3 pull-right">{{item.column}}x{{item.row}}</div>
 									</div>
-									<p><select class="form-control" ng-model="item.media.path"  ng-options="media.path as media.name for media in data.medias | orderBy: 'name'" ng-change="notChange = false"></select></p>
+									<p><select class="form-control" ng-model="item.media"  ng-options="media.name for media in data.medias | orderBy: 'name'" ng-change="$parent.notChange = false"></select></p>
 									<p><a class="btn btn-danger" ng-click="removeCategoryItem(category, item)">@@admin-delete@@</a></p>
 								</div>
 							</div>
