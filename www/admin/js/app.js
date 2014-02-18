@@ -3,7 +3,7 @@ var app = angular.module('portfolioAdmin', ['ngUpload', 'colorpicker.module']);
 app.controller('AppCtrl', function($scope, $http) {
 
   $scope.data = {};
-  $scope.notChange = true;
+  $scope.notChange = false;
   $scope.uploadError = false;
   $scope.deletedMedia = [];
 
@@ -29,7 +29,7 @@ app.controller('AppCtrl', function($scope, $http) {
         data: $scope.data
       }).
       success(function(data, status, headers, config) {
-        $scope.notChange = true;
+        $scope.notChange = false;
         if ($scope.deletedMedia.lenght > 0) {
           $http({
             method: 'POST',

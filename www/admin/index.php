@@ -4,6 +4,7 @@
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 		<link href="css/admin.css" rel="stylesheet" type="text/css">
 		<link href="css/colorpicker.css" rel="stylesheet" type="text/css">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	</head>
 	<body ng-controller="AppCtrl">
 
@@ -70,6 +71,7 @@
 							'section.menu' => array('name' => '@@admin-settings-menu@@','kind' => 'section'),
 							'menu.size' => array('name' => '@@admin-settings-menu-size@@','kind' => 'int'),
 							'menu.color' => array('name' => '@@admin-settings-menu-color@@','kind' => 'color'),
+							'menu.color_hover' => array('name' => '@@admin-settings-menu-color_hover@@','kind' => 'color'),
 							'menu.top' => array('name' => '@@admin-settings-menu-top@@','kind' => 'int'),
 							'menu.left' => array('name' => '@@admin-settings-menu-left@@','kind' => 'int'),
 							'menu.gap' => array('name' => '@@admin-settings-menu-gap@@','kind' => 'int'),
@@ -78,6 +80,9 @@
 							'categories.size' => array('name' => '@@admin-settings-categories-size@@','kind' => 'int'),
 							'categories.color' => array('name' => '@@admin-settings-categories-color@@','kind' => 'color'),
 							'categories.left' => array('name' => '@@admin-settings-categories-left@@','kind' => 'int'),
+							'categories.right' => array('name' => '@@admin-settings-categories-right@@','kind' => 'int'),
+							'content.padding_left' => array('name' => '@@admin-settings-content-padding_left@@','kind' => 'int'),
+							'categories.vertical_align' => array('name' => '@@admin-settings-categories-vertical_align@@','kind' => 'int'),
 							
 							'section.items' => array('name' => '@@admin-settings-items@@','kind' => 'section'),
 							'row' => array('name' => '@@admin-settings-row@@','kind' => 'int'),
@@ -124,28 +129,28 @@
 								switch ($data['kind']) {
 									case 'color':
 										?>
-											<input colorpicker id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
+											<input colorpicker id="settings-<?php echo $key_escaped; ?>" class="form-control input-sm" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
 										<?php
 										break;
 									case 'rgba':
 										?>
-											<input colorpicker="rgba" id="settings-<?php echo $key_escaped; ?>" class="form-control" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
+											<input colorpicker="rgba" id="settings-<?php echo $key_escaped; ?>" class="form-control input-sm" type="text" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>
 										<?php
 										break;
 									case 'media':
 										?>
-											<select class="form-control" ng-model="data.settings.<?php echo $key; ?>"  ng-options="media.path as media.name for media in data.medias | orderBy: 'name'" ng-change="notChange = false"></select>
+											<select class="form-control input-sm" ng-model="data.settings.<?php echo $key; ?>"  ng-options="media.path as media.name for media in data.medias | orderBy: 'name'" ng-change="notChange = false"></select>
 										<?php
 										break;
 									case 'textarea':
 										?>
-											<textarea rows="3" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"></textarea>
+											<textarea rows="3" class="form-control input-sm" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"></textarea>
 										<?php
 										break;
 									
 									default:
 										?>
-											<input type="text" class="form-control" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>	
+											<input type="text" class="form-control input-sm" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"/>	
 										<?php
 										break;
 								}

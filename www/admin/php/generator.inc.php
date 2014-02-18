@@ -46,6 +46,8 @@ class Generator {
 		<title>'.$data->settings->title->title.'</title>
 		<link href="css/portfolio.css" rel="stylesheet" type="text/css">
 		<meta name="keywords" content="'.$data->settings->page->keywords.'">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
 		<div class="header">
@@ -56,26 +58,28 @@ class Generator {
 					'.$data->settings->subtitle->title.'
 				</div>
 			</div>
-			<ul class="header-menu">
-				'.$menu.'
-				<li><a href="#'.$contact_id.'">'.$data->settings->contact->title.'</a></li>
-			</ul>
+			<div class="header-menu">
+				<ul>
+					'.$menu.'
+					<li><a href="#'.$contact_id.'">'.$data->settings->contact->title.'</a></li>
+				</ul>
+			</div>
 		</div>
-		<div class="content">
+		<div class="pf-content">
 			'.$content.'
 			<div class="pf-item">
 				<div id="'.$contact_id.'" class="pf-item-title">
 					<span>'.$data->settings->contact->title.'</span>
 				</div>
 				<div class="pf-item-content">
-					<div class="collumn contact">
+					<div class="column contact">
 						'.$data->settings->contact->content.'
 					</div>
 				</div>
 			</div>
 		</div>
-		<footer>
-		</footer>
+		<div class="footer">
+		</div>
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="js/jquery.mousewheel.min.js"></script>
@@ -106,7 +110,7 @@ class Generator {
 				$offset_row = $item->row;
 			}
 
-			$result .='<div offset_row="'.$offset_row.'" class="pf-thumbnail span'.$item->column.' row'.$item->row.'" style="background-image: url(\''.$item->media->path.'\');">
+			$result .='<div class="pf-thumbnail span'.$item->column.' row'.$item->row.'" style="background-image: url(\''.$item->media->path.'\');">
 			<img src="'.$item->media->path.'" alt="'.$item->media->name.'"/>
 			</div>';
 			$not_first = true;
@@ -146,7 +150,11 @@ body {
 .header {
   float: left;
   height: '.$data->settings->header->height.'px;
-  position: relative;
+  position: fixed;
+}
+.header > div {
+	display: inline-block;
+	vertical-align: top;
 }
 .header-title {
   width: '.$data->settings->title->width.'px;
@@ -155,17 +163,15 @@ body {
   font-size: '.$data->settings->title->size.'px;
   text-align: right;
   color: '.$data->settings->title->color.';
-  float: left;
   background-image: url(\'/'.$data->settings->header->background->path.'\');
   background-repeat: no-repeat;
-  background-position: right '.$data->settings->header->background->position.'px;
+  background-position: left '.$data->settings->header->background->position.'px;
 }
 .header-subtitle {
   font-size: '.$data->settings->subtitle->size.'px;
   color: '.$data->settings->subtitle->color.';
 }
 .header-menu {
-  float: left;
   margin-top: '.$data->settings->menu->left.'px;
   margin-left: '.$data->settings->menu->left.'px;
 }
@@ -174,10 +180,15 @@ body {
   float: left;
   font-size: '.$data->settings->menu->size.'px;
   margin-right: '.$data->settings->menu->gap.'px;
+  list-style: none;
 }
 .header-menu li a {
   text-decoration: none;
   color: '.$data->settings->menu->color.';
+}
+.header-menu li a:hover {
+  text-decoration: none;
+  color: '.$data->settings->menu->color_hover.';
 }
 .logo {
   height: '.$data->settings->logo->height.'px;
@@ -185,14 +196,20 @@ body {
   margin-top: '.$data->settings->logo->top.'px;
   margin-left: '.$data->settings->logo->left.'px;
   background-image: url(\'/'.$data->settings->logo->path.'\');
-  float: left;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
+.pf-content {
+  min-width: 100%;
+  float: left;
+  padding-left: '.$data->settings->content->padding_left.'px;
+  margin-top: '.$data->settings->header->height.'px;
+}
 .content {
   min-width: 100%;
   float: left;
+  padding-left: '.$data->settings->content->padding_left.'px;
 }
 .pf-item {
   display: inline-block;
@@ -222,7 +239,7 @@ body {
 .pf-item-title span {
   display: block;
   position: relative;
-  right: -68px;
+  right: '.$data->settings->categories->vertical_align.'px;
   text-align: right;
   font-size: '.$data->settings->categories->size.'px;
   color: '.$data->settings->categories->color.';
@@ -230,17 +247,22 @@ body {
 }
 .pf-item-content {
   margin-left: '.$data->settings->categories->left.'px;
+  margin-right: '.$data->settings->categories->right.'px;
 }
-.column {
-  margin-top: '.$data->settings->items->position.'px;
+.column {'.
+  //margin-top: '.$data->settings->items->position.'px;
+  '
   display: inline-block;
   vertical-align: top;
+}
+.column .pf-thumbnail:first-child {
+	margin-top: 0px;
 }
 .contact {
   color: '.$data->settings->contact->color.';
   font-size: '.$data->settings->contact->size.'px;
 }
-footer {
+.footer {
   background-color: '.$data->settings->footer->bg_color.';
   top: '.$data->settings->page->height.'px;
   bottom: 0px;

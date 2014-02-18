@@ -1,8 +1,7 @@
 <?php
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	$data = file_get_contents( "php://input" );
-	$data_storage = '<?php'.PHP_EOL.'$data = \''.$data.'\';';
-	file_put_contents( '../data.inc.php', $data_storage );
+	file_put_contents( '../data.ini', $data );
 
 	$data = json_decode($data);
 
@@ -17,9 +16,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	file_put_contents( '../css/portfolio.css', $css );
 }
 else {
-	if ( file_exists( '../data.inc.php' ) ) {
-		include_once '../data.inc.php';
-		echo $data;
+	header('Content-type: application/json');
+	if ( file_exists( '../data.ini' ) ) {
+
+		echo file_get_contents('../data.ini');
 	}
 	else {
 		$data = new stdClass();
@@ -29,6 +29,7 @@ else {
 		$data->settings->categories = new stdClass();
 		$data->settings->categories->color = '#790005';
 		$data->settings->categories->left = 100;
+		$data->settings->categories->right = 60;
 		$data->settings->categories->size = 100;
 		$data->settings->contact = new stdClass();
 		$data->settings->contact->content = '';
@@ -79,6 +80,8 @@ else {
 		$data->settings->title->left = 4;
 		$data->settings->title->width = 462;
 		$data->settings->title->title = '';
+		$data->settings->content = new stdClass();
+		$data->settings->content->padding_left = 30;
 
 		echo json_encode($data);
 	}
