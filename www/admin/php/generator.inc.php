@@ -24,7 +24,7 @@ class Generator {
 			$id = trim( $id );
 			$id = preg_replace( '/\\s/', '-', $id );
 
-			$menu .= '<li><a href="#'.$id.'">'.$name.'</a></li>';
+			$menu .= '<li><a onclick="pf_scroll(\'#'.$id.'\')">'.$name.'</a></li>';
 
 			$cat_content = self::_generateCategoryContent( $category, $nb_row );
 
@@ -50,21 +50,6 @@ class Generator {
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div class="header">
-			<div class="logo"></div>
-			<div class="header-title">
-				'.$data->settings->title->title.'
-				<div class="header-subtitle">
-					'.$data->settings->subtitle->title.'
-				</div>
-			</div>
-			<div class="header-menu">
-				<ul>
-					'.$menu.'
-					<li><a href="#'.$contact_id.'">'.$data->settings->contact->title.'</a></li>
-				</ul>
-			</div>
-		</div>
 		<div class="pf-content">
 			'.$content.'
 			<div class="pf-item">
@@ -81,15 +66,40 @@ class Generator {
 		<div class="footer">
 		</div>
 
+		<div class="header">
+			<div class="logo"></div>
+			<div class="header-title">
+				'.$data->settings->title->title.'
+				<div class="header-subtitle">
+					'.$data->settings->subtitle->title.'
+				</div>
+			</div>
+			<div class="header-menu">
+				<ul>
+					'.$menu.'
+					<li><a onclick="pf_scroll(\'#'.$contact_id.'\')">'.$data->settings->contact->title.'</a></li>
+				</ul>
+			</div>
+		</div>
+
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="js/jquery.mousewheel.min.js"></script>
 		<script type="text/javascript">
-			/*$(function() {
+			function pf_scroll(target) {
+				$(document.body).animate({
+    				\'scrollLeft\':   $(target).offset().left,
+    				\'scrollTop\':   $(window).scrollTop(),
+				}, '.$data->settings->page->scroll_duration.');
+			}
+			$(function() {
 				$("body").mousewheel(function(event, delta) {
 					this.scrollLeft -= delta;
 					event.preventDefault();
 				});
-			});*/
+				$(window).on(\'hashchange\', function() {
+					pf_scroll(location.hash);
+				});
+			});
 		</script>
 	</body>
 </html>';
@@ -142,7 +152,6 @@ class Generator {
 }
 body {
   overflow-x: scroll;
-  overflow-y: hidden;
   white-space: nowrap;
   font-family: Altera;
   background-color: '.$data->settings->page->bg_color.';

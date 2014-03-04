@@ -104,7 +104,8 @@
 							'page.bg_color' => array('name' => '@@admin-settings-page-bg_color@@','kind' => 'color'),
 							'page.shadow.size' => array('name' => '@@admin-settings-page-shadow-size@@','kind' => 'int'),
 							'page.shadow.color' => array('name' => '@@admin-settings-page-shadow-color@@','kind' => 'rgba'),
-							'footer.bg_color' => array('name' => '@@admin-settings-footer-bg_color@@','kind' => 'color')
+							'footer.bg_color' => array('name' => '@@admin-settings-footer-bg_color@@','kind' => 'color'),
+							'page.scroll_duration' => array('name' => '@@admin-settings-page-scroll_duration@@','kind' => 'int')
 						);
 
 						foreach ($settings as $key => $data) {
