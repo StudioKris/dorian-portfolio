@@ -4,52 +4,58 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		less: {
-			development: {
+			main: {
 				options: {
-					paths: ["build/www/css"]
+					paths: ["build_tmp/www/css"]
 				},
 				files: {
-					"build/www/css/portfolio.css": "build/www/css/portfolio.less",
-					"build/www/admin/css/admin.css": "build/www/admin/css/admin.less"
+					"build_tmp/www/css/portfolio.css": "www/css/portfolio.less",
+					"build_tmp/www/admin/css/admin.css": "www/admin/css/admin.less"
 				}
 			},
 			production: {
 				options: {
-					paths: ["build/css"],
+					paths: ["build_tmp/www/css"],
 					yuicompress: true
 				},
 				files: {
-					"build/www/css/portfolio.css": "build/www/css/portfolio.less",
-					"build/www/admin/css/admin.css": "build/www/admin/css/admin.less"
+					"build_tmp/www/css/portfolio.css": "www/css/portfolio.less",
+					"build_tmp/www/admin/css/admin.css": "www/admin/css/admin.less"
 				}
 			}
 		},
 		copy: {
-			development: {
+			first: {
 				files: [{
-						src: ['www/**'],
-						dest: 'build/'
-					}
-				]
+					src: ['www/**', '!**/*.less'],
+					dest: 'build_tmp/'
+				}]
+			},
+			last: {
+				expand: true,
+				cwd: 'www/',
+				src: '**/img/*',
+				dest: 'build/fr/'
 			}
 		},
-		includereplace: {
-			development: {
+		i18n: {
+			main: {
+				src: ['build_tmp/www/**/*'],
 				options: {
-					globals: grunt.file.readJSON('i18n/fr.properties'),
-					prefix: '@@',
-      				suffix: '@@'
-				},
-				src: ['build/www/*.html','build/www/admin/*.php']
+					locales: 'i18n/*.json',
+					output: 'build',
+					base: 'build_tmp/www'
+				}
 			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-include-replace');
+	grunt.loadNpmTasks('grunt-i18n');
 
 	// Default task(s).
-	grunt.registerTask('development', ['copy:development', 'includereplace:development', 'less:development']);
+	grunt.registerTask('development', ['copy:first', 'less', 'i18n', 'copy:last']);
+	grunt.registerTask('default', ['copy:first', 'less:production', 'i18n', 'copy:last']);
 
 };

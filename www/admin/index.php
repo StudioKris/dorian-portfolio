@@ -1,9 +1,10 @@
 <html ng-app="portfolioAdmin">
 	<head>
-		<title>@@admin-title@@</title>
+		<title><%= admin.title %></title>
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 		<link href="css/admin.css" rel="stylesheet" type="text/css">
 		<link href="css/colorpicker.css" rel="stylesheet" type="text/css">
+		<link href="css/bootstrap-slider.min.css" rel="stylesheet" type="text/css">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	</head>
 	<body ng-controller="AppCtrl">
@@ -16,16 +17,16 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">@@admin-title@@</a>
+					<a class="navbar-brand" href="#"><%= admin.title %></a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#settings">@@admin-settings@@</a></li>
-						<li><a href="#categories">@@admin-categories@@</a></li>
-						<li><a href="#medias">@@admin-medias@@</a></li>
+						<li class="active"><a href="#settings"><%= admin.settings.label %></a></li>
+						<li><a href="#categories"><%= admin.categories.label %></a></li>
+						<li><a href="#medias"><%= admin.medias.label %></a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<button type="button" class="btn btn-lg btn-primary" ng-disabled="notChange" ng-click="saveData()">@@admin-save@@</button>
+						<button type="button" class="btn btn-lg btn-primary" ng-disabled="notChange" ng-click="saveData()"><%= admin.save %></button>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -34,78 +35,79 @@
 		<div class="container">
 			<div class="bs-docs-section">
 				<div class="page-header">
-					<h1 id="settings">@@admin-settings@@</h1>
+					<h1 id="settings"><%= admin.settings.label %></h1>
 				</div>
 				<div class="row">
 					<form class="form-horizontal" role="form">
 					<?php
 						$settings = array(
 
-							'title.title' => array('name' => '@@admin-settings-title-title@@','kind' => 'text'),
-							'subtitle.title' => array('name' => '@@admin-settings-subtitle-title@@','kind' => 'text'),
-							'page.keywords' => array('name' => '@@admin-settings-page-keywords@@','kind' => 'text'),
+							'title.title' => array('name' => '<%= admin.settings.title.title %>','kind' => 'text'),
+							'subtitle.title' => array('name' => '<%= admin.settings.subtitle.title %>','kind' => 'text'),
+							'page.keywords' => array('name' => '<%= admin.settings.page.keywords %>','kind' => 'text'),
 
-							'section.header' => array('name' => '@@admin-settings-header@@','kind' => 'section'),
-							'header.background.path' => array('name' => '@@admin-settings-header-background-path@@','kind' => 'media'),
-							'header.height' => array('name' => '@@admin-settings-header-height@@','kind' => 'int'),
-							'header.background.position' => array('name' => '@@admin-settings-header-background-position@@','kind' => 'int'),
+							'section.header' => array('name' => '<%= admin.settings.header.label %>','kind' => 'section'),
+							'header.background.path' => array('name' => '<%= admin.settings.header.background.paths %>','kind' => 'media'),
+							'header.height' => array('name' => '<%= admin.settings.header.height %>','kind' => 'int'),
+							'header.background.position' => array('name' => '<%= admin.settings.header.background.position %>','kind' => 'int'),
 
-							'section.logo' => array('name' => '@@admin-settings-logo@@','kind' => 'section'),
-							'logo.path' => array('name' => '@@admin-settings-logo-path@@','kind' => 'media'),
-							'logo.height' => array('name' => '@@admin-settings-logo-height@@','kind' => 'int'),
-							'logo.width' => array('name' => '@@admin-settings-logo-width@@','kind' => 'int'),
-							'logo.top' => array('name' => '@@admin-settings-logo-top@@','kind' => 'int'),
-							'logo.left' => array('name' => '@@admin-settings-logo-left@@','kind' => 'int'),
+							'section.logo' => array('name' => '<%= admin.settings.logo.label %>','kind' => 'section'),
+							'logo.path' => array('name' => '<%= admin.settings.logo.path %>','kind' => 'media'),
+							'logo.height' => array('name' => '<%= admin.settings.logo.height %>','kind' => 'int'),
+							'logo.width' => array('name' => '<%= admin.settings.logo.width %>','kind' => 'int'),
+							'logo.top' => array('name' => '<%= admin.settings.logo.top %>','kind' => 'int'),
+							'logo.left' => array('name' => '<%= admin.settings.logo.left %>','kind' => 'int'),
 
-							'section.title' => array('name' => '@@admin-settings-title@@','kind' => 'section'),
-							'title.width' => array('name' => '@@admin-settings-title-width@@','kind' => 'int'),
-							'title.size' => array('name' => '@@admin-settings-title-size@@','kind' => 'int'),
-							'title.color' => array('name' => '@@admin-settings-title-color@@','kind' => 'color'),
-							'title.top' => array('name' => '@@admin-settings-title-top@@','kind' => 'int'),
-							'title.left' => array('name' => '@@admin-settings-title-left@@','kind' => 'int'),
+							'section.title' => array('name' => '<%= admin.settings.title.label %>','kind' => 'section'),
+							'title.width' => array('name' => '<%= admin.settings.title.width %>','kind' => 'int'),
+							'title.size' => array('name' => '<%= admin.settings.title.size %>','kind' => 'int'),
+							'title.color' => array('name' => '<%= admin.settings.title.color %>','kind' => 'color'),
+							'title.top' => array('name' => '<%= admin.settings.title.top %>','kind' => 'int'),
+							'title.left' => array('name' => '<%= admin.settings.title.left %>','kind' => 'int'),
 							
-							'section.subtitle' => array('name' => '@@admin-settings-subtitle@@','kind' => 'section'),
-							'subtitle.size' => array('name' => '@@admin-settings-subtitle-size@@','kind' => 'int'),
-							'subtitle.color' => array('name' => '@@admin-settings-subtitle-color@@','kind' => 'color'),
+							'section.subtitle' => array('name' => '<%= admin.settings.subtitle.label %>','kind' => 'section'),
+							'subtitle.size' => array('name' => '<%= admin.settings.subtitle.size %>','kind' => 'int'),
+							'subtitle.color' => array('name' => '<%= admin.settings.subtitle.color %>','kind' => 'color'),
 
-							'section.menu' => array('name' => '@@admin-settings-menu@@','kind' => 'section'),
-							'menu.size' => array('name' => '@@admin-settings-menu-size@@','kind' => 'int'),
-							'menu.color' => array('name' => '@@admin-settings-menu-color@@','kind' => 'color'),
-							'menu.color_hover' => array('name' => '@@admin-settings-menu-color_hover@@','kind' => 'color'),
-							'menu.top' => array('name' => '@@admin-settings-menu-top@@','kind' => 'int'),
-							'menu.left' => array('name' => '@@admin-settings-menu-left@@','kind' => 'int'),
-							'menu.gap' => array('name' => '@@admin-settings-menu-gap@@','kind' => 'int'),
+							'section.menu' => array('name' => '<%= admin.settings.menu.label %>','kind' => 'section'),
+							'menu.size' => array('name' => '<%= admin.settings.menu.size %>','kind' => 'int'),
+							'menu.color' => array('name' => '<%= admin.settings.menu.color %>','kind' => 'color'),
+							'menu.color_hover' => array('name' => '<%= admin.settings.menu.colorHover %>','kind' => 'color'),
+							'menu.top' => array('name' => '<%= admin.settings.menu.top %>','kind' => 'int'),
+							'menu.left' => array('name' => '<%= admin.settings.menu.left %>','kind' => 'int'),
+							'menu.gap' => array('name' => '<%= admin.settings.menu.gap %>','kind' => 'int'),
 
-							'section.categories' => array('name' => '@@admin-settings-categories@@','kind' => 'section'),
-							'categories.size' => array('name' => '@@admin-settings-categories-size@@','kind' => 'int'),
-							'categories.color' => array('name' => '@@admin-settings-categories-color@@','kind' => 'color'),
-							'categories.left' => array('name' => '@@admin-settings-categories-left@@','kind' => 'int'),
-							'categories.right' => array('name' => '@@admin-settings-categories-right@@','kind' => 'int'),
-							'content.padding_left' => array('name' => '@@admin-settings-content-padding_left@@','kind' => 'int'),
-							'categories.vertical_align' => array('name' => '@@admin-settings-categories-vertical_align@@','kind' => 'int'),
+							'section.categories' => array('name' => '<%= admin.settings.categories.label %>','kind' => 'section'),
+							'categories.size' => array('name' => '<%= admin.settings.categories.size %>','kind' => 'int'),
+							'categories.color' => array('name' => '<%= admin.settings.categories.color %>','kind' => 'color'),
+							'categories.left' => array('name' => '<%= admin.settings.categories.left %>','kind' => 'int'),
+							'categories.right' => array('name' => '<%= admin.settings.categories.right %>','kind' => 'int'),
+							'content.padding_left' => array('name' => '<%= admin.settings.content.paddingLeft %>','kind' => 'int'),
+							'categories.vertical_align' => array('name' => '<%= admin.settings.categories.verticalAlign %>','kind' => 'int'),
 							
-							'section.items' => array('name' => '@@admin-settings-items@@','kind' => 'section'),
-							'row' => array('name' => '@@admin-settings-row@@','kind' => 'int'),
-							'column' => array('name' => '@@admin-settings-column@@','kind' => 'int'),
-							'items.height' => array('name' => '@@admin-settings-items-height@@','kind' => 'int'),
-							'items.width' => array('name' => '@@admin-settings-items-width@@','kind' => 'int'),
-							'items.top' => array('name' => '@@admin-settings-items-top@@','kind' => 'int'),
-							'items.left' => array('name' => '@@admin-settings-items-left@@','kind' => 'int'),
-							'items.position' => array('name' => '@@admin-settings-items-position@@','kind' => 'int'),
+							'section.items' => array('name' => '<%= admin.settings.items.label %>','kind' => 'section'),
+							'row' => array('name' => '<%= admin.settings.rows %>','kind' => 'int'),
+							'column' => array('name' => '<%= admin.settings.columns %>','kind' => 'int'),
+							'items.height' => array('name' => '<%= admin.settings.items.height %>','kind' => 'int'),
+							'items.width' => array('name' => '<%= admin.settings.items.width %>','kind' => 'int'),
+							'items.top' => array('name' => '<%= admin.settings.items.top %>','kind' => 'int'),
+							'items.left' => array('name' => '<%= admin.settings.items.left %>','kind' => 'int'),
+							'items.position' => array('name' => '<%= admin.settings.items.position %>','kind' => 'int'),
 
-							'section.contact' => array('name' => '@@admin-settings-contact@@','kind' => 'section'),
-							'contact.title' => array('name' => '@@admin-settings-contact-title@@','kind' => 'text'),
-							'contact.size' => array('name' => '@@admin-settings-contact-size@@','kind' => 'int'),
-							'contact.color' => array('name' => '@@admin-settings-contact-color@@','kind' => 'color'),
-							'contact.content' => array('name' => '@@admin-settings-contact-content@@','kind' => 'textarea'),
+							'section.contact' => array('name' => '<%= admin.settings.contact.label %>','kind' => 'section'),
+							'contact.title' => array('name' => '<%= admin.settings.contact.title %>','kind' => 'text'),
+							'contact.size' => array('name' => '<%= admin.settings.contact.size %>','kind' => 'int'),
+							'contact.color' => array('name' => '<%= admin.settings.contact.color %>','kind' => 'color'),
+							'contact.content' => array('name' => '<%= admin.settings.contact.content %>','kind' => 'textarea'),
 
-							'section.page' => array('name' => '@@admin-settings-page@@','kind' => 'section'),
-							'page.height' => array('name' => '@@admin-settings-page-height@@','kind' => 'int'),
-							'page.bg_color' => array('name' => '@@admin-settings-page-bg_color@@','kind' => 'color'),
-							'page.shadow.size' => array('name' => '@@admin-settings-page-shadow-size@@','kind' => 'int'),
-							'page.shadow.color' => array('name' => '@@admin-settings-page-shadow-color@@','kind' => 'rgba'),
-							'footer.bg_color' => array('name' => '@@admin-settings-footer-bg_color@@','kind' => 'color'),
-							'page.scroll_duration' => array('name' => '@@admin-settings-page-scroll_duration@@','kind' => 'int')
+							'section.page' => array('name' => '<%= admin.settings.page.label %>','kind' => 'section'),
+							'page.height' => array('name' => '<%= admin.settings.page.height %>','kind' => 'int'),
+							'page.bg_color' => array('name' => '<%= admin.settings.page.bgColor %>','kind' => 'color'),
+							'page.shadow.size' => array('name' => '<%= admin.settings.page.shadow.size %>','kind' => 'int'),
+							'page.shadow.color' => array('name' => '<%= admin.settings.page.shadow.color %>','kind' => 'rgba'),
+							'footer.bg_color' => array('name' => '<%= admin.settings.footer.bgColor %>','kind' => 'color'),
+							'page.scroll_duration' => array('name' => '<%= admin.settings.page.scrollDuration %>','kind' => 'int'),
+							'page.scroll_acceleration' => array('name' => '<%= admin.settings.page.scrollAcceleration %>','kind' => 'float', 'min' => .1, 'max' => 50, 'step' => .1)
 						);
 
 						foreach ($settings as $key => $data) {
@@ -148,6 +150,16 @@
 											<textarea rows="3" class="form-control input-sm" id="settings-<?php echo $key_escaped; ?>" ng-model="data.settings.<?php echo $key; ?>" ng-change="notChange = false"></textarea>
 										<?php
 										break;
+									case 'float':
+										?>
+											<slider id="settings-<?php echo $key_escaped; ?>" 
+												ng-model="data.settings.<?php echo $key; ?>" 
+												ng-change="notChange = false" 
+												min="<?php echo $data['min']; ?>" 
+												max="<?php echo $data['max']; ?>" 
+												step="<?php echo $data['step']; ?>"></slider>
+										<?php
+										break;
 									
 									default:
 										?>
@@ -168,28 +180,43 @@
 			</div>
 			<div class="bs-docs-section">
 				<div class="page-header">
-					<h1 id="categories">@@admin-categories@@</h1>
+					<h1 id="categories"><%= admin.categories.label %></h1>
 				</div>
 				<div ng-repeat="category in data.categories">
 					<div class="row">
 						<div class="col-md-8"><h2>{{category.name}}</h2></div>
-						<div class="col-md-4"><a class="btn btn-danger pull-right" ng-click="removeCategory(category)">@@admin-delete@@</a></div>
+						<div class="col-md-4"><a class="btn btn-danger pull-right" ng-click="removeCategory(category)"><%= admin.delete %></a></div>
 					</div>
 					<div class="row">
 						<div class="col-sm-3 col-md-3" ng-repeat="item in category.items">
 							<div class="thumbnail">
 								<img class="media-thumbnail" ng-src="/{{item.media.path}}">
 								<div class="caption">
-									<div>
-										
-										
-									</div>
 									<div class="row">
-										<div class="col-md-9"><h3>{{item.media.name}}</h3></div>
-										<div class="col-md-3 pull-right">{{item.column}}x{{item.row}}</div>
+										<div class="col-md-9"><h3 class="ellipse">{{item.media.name}}</h3></div>
 									</div>
+									<p>
+										<div class="input-group">
+											<input type="text" class="form-control" ng-model="item.column">
+											<span class="input-group-addon"><%= admin.column %></span>
+										</div>
+										<div class="input-group">
+											<input type="text" class="form-control" ng-model="item.row">
+											<span class="input-group-addon"><%= admin.row %></span>
+										</div>
+									</p>
 									<p><select class="form-control" ng-model="item.media"  ng-options="media.name for media in data.medias | orderBy: 'name'" ng-change="$parent.notChange = false"></select></p>
-									<p><a class="btn btn-danger" ng-click="removeCategoryItem(category, item)">@@admin-delete@@</a></p>
+									<p>
+										<center>
+											<button type="button" class="btn btn-primary" ng-click="pushLeftCategoryItem(category, item)" ng-disabled="$first">
+												<span class="glyphicon glyphicon-chevron-left"></span>
+											</button>
+											<button type="button" class="btn btn-danger" ng-click="removeCategoryItem(category, item)"><%= admin.delete %></button>
+											<button type="button" class="btn btn-primary" ng-click="pushRightCategoryItem(category, item)" ng-disabled="$last">
+												<span class="glyphicon glyphicon-chevron-right"></span>
+											</button>
+										</center>
+									</p>
 								</div>
 							</div>
 						</div>
@@ -201,29 +228,29 @@
 										<select class="form-control" ng-model="selectedMedia"  ng-options="media.name for media in data.medias | orderBy: 'name'"></select>
 										<div class="input-group">
 											<input type="text" class="form-control" ng-model="mediaColumn">
-											<span class="input-group-addon">@@admin-column@@</span>
+											<span class="input-group-addon"><%= admin.column %></span>
 										</div>
 										<div class="input-group">
 											<input type="text" class="form-control" ng-model="mediaRow">
-											<span class="input-group-addon">@@admin-row@@</span>
+											<span class="input-group-addon"><%= admin.row %></span>
 										</div>
 									</p>
-									<p><a class="btn btn-primary" ng-click="addCategoryMedia(category, selectedMedia, mediaRow, mediaColumn)">@@admin-add@@</a></p>
+									<p><a class="btn btn-primary" ng-click="addCategoryMedia(category, selectedMedia, mediaRow, mediaColumn)"><%= admin.add %></a></p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<form ng-submit="addCategory()" class="input-group">
-					<input type="text" class="form-control" placeholder="@@admin-categories-name@@" ng-model="newCategoryName">
+					<input type="text" class="form-control" placeholder="<%= admin.settings.categories.name %>" ng-model="newCategoryName">
 					<span class="input-group-btn">
-						<input class="btn btn-primary" type="submit" value="@@admin-add@@">
+						<input class="btn btn-primary" type="submit" value="<%= admin.add %>">
 					</span>
 				</form>
 			</div>
 			<div class="bs-docs-section">
 				<div class="page-header">
-					<h1 id="medias">@@admin-medias@@</h1>
+					<h1 id="medias"><%= admin.medias.label %></h1>
 				</div>
 				<div class="row">
 					<div class="col-sm-3 col-md-3" ng-repeat="media in data.medias">
@@ -231,17 +258,17 @@
 							<img class="media-thumbnail" ng-src="/{{media.path}}">
 							<div class="caption">
 								<h3>{{media.name}}</h3>
-								<p><a class="btn btn-danger" ng-click="removeMedia(media)">@@admin-delete@@</a></p>
+								<p><a class="btn btn-danger" ng-click="removeMedia(media)"><%= admin.delete %></a></p>
 							</div>
 						</div>
 					</div>
 				</div>	
 				<form action="upload.php" ng-upload>
-					<input type="file" name="file" title="@@admin-medias-file@@"/>
+					<input type="file" name="file" title="<%= admin.medias.file %>"/>
 					<div class="input-group">
-						<input type="text" class="form-control" name="name" ng-model="name" placeholder="@@admin-medias-name@@"/>
+						<input type="text" class="form-control" name="name" ng-model="name" placeholder="<%= admin.medias.name %>"/>
 						<span class="input-group-btn">
-							<input type="submit" class="btn btn-primary" value="@@admin-medias-submit@@" upload-submit="addMedia(content, completed)" />
+							<input type="submit" class="btn btn-primary" value="<%= admin.medias.submit %>" upload-submit="addMedia(content, completed)" />
 						</span>
 					</div>	
 				</form>
@@ -250,11 +277,13 @@
 		</div> <!-- /container -->
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 		<script src="js/ng-upload.min.js"></script>
 		<script src="js/bootstrap-colorpicker.js"></script>
 		<script src="js/bootstrap-colorpicker-module.js"></script>
+		<script src="js/bootstrap-slider.min.js"></script>
+		<script src="js/bootstrap-slider-module.js"></script>
 		<script src="js/app.js"></script>
 	</body>
 </html>

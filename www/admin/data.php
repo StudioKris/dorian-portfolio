@@ -68,6 +68,7 @@ else {
 		$data->settings->page->shadow->color = 'rgba(0, 0, 0, 0.4)';
 		$data->settings->page->bg_color = '#FFFFFF';
 		$data->settings->page->scroll_duration = 700;
+		$data->settings->page->scroll_acceleration = 1;
 		$data->settings->footer = new stdClass();
 		$data->settings->footer->bg_color = '#F5F5F5';
 		$data->settings->subtitle = new stdClass();

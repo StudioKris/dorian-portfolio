@@ -1,4 +1,15 @@
-var app = angular.module('portfolioAdmin', ['ngUpload', 'colorpicker.module']);
+Array.prototype.move = function (old_index, new_index) {
+    if (new_index >= this.length) {
+        var k = new_index - this.length;
+        while ((k--) + 1) {
+            this.push(undefined);
+        }
+    }
+    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+    return this; // for testing purposes
+};
+
+var app = angular.module('portfolioAdmin', ['ngUpload', 'colorpicker.module', 'ui.bootstrap-slider']);
 
 app.controller('AppCtrl', function($scope, $http) {
 
@@ -74,6 +85,16 @@ app.controller('AppCtrl', function($scope, $http) {
   $scope.removeCategoryItem = function(category, item) {
     var index = category.items.indexOf(item);
     category.items.splice(index, 1);
+    $scope.notChange = false;
+  };
+  $scope.pushLeftCategoryItem = function(category, item) {
+    var index = category.items.indexOf(item);
+    category.items.move(index, index-1);
+    $scope.notChange = false;
+  };
+  $scope.pushRightCategoryItem = function(category, item) {
+    var index = category.items.indexOf(item);
+    category.items.move(index, index+1);
     $scope.notChange = false;
   };
 

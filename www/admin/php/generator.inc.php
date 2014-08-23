@@ -26,7 +26,7 @@ class Generator {
 
 			$menu .= '<li><a onclick="pf_scroll(\'#'.$id.'\')">'.$name.'</a></li>';
 
-			$cat_content = self::_generateCategoryContent( $category, $nb_row );
+			$cat_content = self::_generateCategoryContent( $category, $nb_row, $id );
 
 			$content .= '<div class="pf-item">
 				<div id="'.$id.'" class="pf-item-title">';
@@ -45,6 +45,7 @@ class Generator {
 	<head>
 		<title>'.$data->settings->title->title.'</title>
 		<link href="css/portfolio.css" rel="stylesheet" type="text/css">
+		<link href="css/lightbox.css" rel="stylesheet">
 		<meta name="keywords" content="'.$data->settings->page->keywords.'">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,6 +85,7 @@ class Generator {
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="js/jquery.mousewheel.min.js"></script>
+		<script src="js/lightbox.min.js"></script>
 		<script type="text/javascript">
 			function pf_scroll(target) {
 				$(document.body).animate({
@@ -93,8 +95,10 @@ class Generator {
 			}
 			$(function() {
 				$("body").mousewheel(function(event, delta) {
-					this.scrollLeft -= delta;
-					event.preventDefault();
+					if($("#lightbox").is(":visible") == false) {
+						this.scrollLeft -= Math.round(delta * '.$data->settings->page->scroll_acceleration.');
+						event.preventDefault();
+					}
 				});
 				$(window).on(\'hashchange\', function() {
 					pf_scroll(location.hash);
@@ -107,7 +111,10 @@ class Generator {
 		return $result;
 	}
 
-	protected static function _generateCategoryContent( $category, $nb_row ) {
+	protected static function _generateCategoryContent( $category, $nb_row, $category_id ) {
+		if (empty($category_id)) {
+			$category_id = rand(1000,9999);
+		}
 		$result = '<div class="column">';
 		$offset_row = 0;
 		$not_first = false;
@@ -121,7 +128,7 @@ class Generator {
 			}
 
 			$result .='<div class="pf-thumbnail span'.$item->column.' row'.$item->row.'" style="background-image: url(\''.$item->media->path.'\');">
-			<img src="'.$item->media->path.'" alt="'.$item->media->name.'"/>
+			<a href="'.$item->media->path.'" data-lightbox="'.$category_id.'"><img src="'.$item->media->path.'" alt="'.$item->media->name.'"/></a>
 			</div>';
 			$not_first = true;
 		}
