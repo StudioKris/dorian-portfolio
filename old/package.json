@@ -1,0 +1,11 @@
+{
+  "name": "dorian-portfolio",
+  "version": "0.0.0",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-less": "*",
+    "grunt-i18n": "*"
+  }
+}

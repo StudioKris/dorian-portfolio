@@ -1,0 +1,12 @@
+.media-thumbnail,
+.thumbnail > img {
+  height: 150px;
+}
+.ellipse {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+body {
+  padding-top: 70px;
+}

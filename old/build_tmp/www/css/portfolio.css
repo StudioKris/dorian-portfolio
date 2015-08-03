@@ -1,0 +1,168 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+@font-face {
+  font-family: Altera;
+  src: url('fonts/altera.ttf');
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+body {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  font-family: Altera;
+}
+.header {
+  float: left;
+  height: 186px;
+  position: relative;
+}
+.header-title {
+  width: 462px;
+  margin-top: 24px;
+  margin-left: 4px;
+  font-size: 36px;
+  text-align: right;
+  float: left;
+  background-image: url('images/underline.png');
+  background-repeat: no-repeat;
+  background-position: right 49px;
+}
+.header-subtitle {
+  font-size: 24px;
+  color: #790005;
+}
+.header-menu {
+  float: left;
+  margin-top: 52px;
+  margin-left: 56px;
+}
+.header-menu li {
+  line-style: none;
+  float: left;
+  font-size: 35px;
+  margin-right: 65px;
+}
+.header-menu li a {
+  text-decoration: none;
+  color: black;
+}
+.logo {
+  height: 202px;
+  width: 188px;
+  margin-top: 16px;
+  margin-left: 84px;
+  background-image: url('images/logo.png');
+  float: left;
+}
+.content {
+  min-width: 100%;
+  float: left;
+  height: 580px;
+}
+.pf-item {
+  display: inline-block;
+  height: 580px;
+  margin-left: -83px;
+  padding-right: 83px;
+}
+.pf-item-title {
+  float: left;
+  height: 0px;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateX(-100%) rotate(-90deg);
+  -moz-transform: translateX(-100%) rotate(-90deg);
+  -o-transform: translateX(-100%) rotate(-90deg);
+  -ms-transform: translateX(-100%) rotate(-90deg);
+  transform: translateX(-100%) rotate(-90deg);
+  /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+  -webkit-transform-origin: right top;
+  -moz-transform-origin: right top;
+  -ms-transform-origin: right top;
+  -o-transform-origin: right top;
+  transform-origin: right top;
+  /* Should be unset in IE9+ I think. */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+.pf-item-title span {
+  display: block;
+  position: relative;
+  right: -68px;
+  text-align: right;
+  font-size: 100px;
+  color: #790005;
+  -webkit-user-select: none;
+}
+.pf-item-content {
+  margin-left: 95px;
+}
+.column {
+  margin-top: -30px;
+  display: inline-block;
+  vertical-align: top;
+}
+footer {
+  background-color: #F5F5F5;
+  top: 923px;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
+  -webkit-box-shadow: inset 0 4px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: inset 0 4px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 4px 0px rgba(0, 0, 0, 0.4);
+}
+.pf-thumbnail {
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.pf-thumbnail img {
+  min-height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  /* IE 5-7 */
+  filter: alpha(opacity=0);
+  /* modern browsers */
+  opacity: 0;
+}
+.span {
+  margin-left: 26px;
+}
+.span1 {
+  margin-left: 26px;
+  width: 250px;
+}
+.span2 {
+  margin-left: 26px;
+  width: 526px;
+}
+.span3 {
+  margin-left: 26px;
+  width: 802px;
+}
+.span4 {
+  margin-left: 26px;
+  width: 1078px;
+}
+.row {
+  margin-top: 30px;
+}
+.row1 {
+  margin-top: 30px;
+  height: 235px;
+}
+.row2 {
+  margin-top: 30px;
+  height: 500px;
+}
