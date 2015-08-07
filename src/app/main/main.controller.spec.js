@@ -5,11 +5,11 @@
 
     beforeEach(module('dorianPortfolio'));
 
-    it('should define more than 5 awesome things', inject(function($controller) {
+    it('should define more than 0 gallery', inject(function($controller) {
       var vm = $controller('MainController');
 
-      expect(angular.isArray(vm.awesomeThings)).toBeTruthy();
-      expect(vm.awesomeThings.length > 5).toBeTruthy();
+      expect(angular.isArray(vm.galleries)).toBeTruthy();
+      expect(vm.galleries.length > 0).toBeTruthy();
     }));
   });
 })();

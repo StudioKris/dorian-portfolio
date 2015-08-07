@@ -1,32 +1,46 @@
 <div class="container">
 
-  <div>
-    <acme-navbar creationDate="main.creationDate" />
-  </div>
-
-  <div class="jumbotron">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">
-      <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
-      Always a pleasure scaffolding your apps.
-    </p>
-    <p class="animated infinite" ng-class="main.classAnimation">
-      <a class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</a>
-    </p>
-    <p>
-      With ♥ thanks to the contributions of Kris!
-    </p>
-  </div>
-
-  <div class="col" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
-    <div class="thumbnail">
-      <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
-      <div class="caption">
-        <h3>{{ awesomeThing.title }}</h3>
-        <p>{{ awesomeThing.description }}</p>
-        <p><a ng-href="{{ awesomeThing.url }}">{{ awesomeThing.url }}</a></p>
+  <div class="portfolio" id="portfolio">
+    <section class="galleries">
+      <header class="top-bar">
+        <div>
+<!--          <acme-navbar creationDate="main.creationDate" /> -->
+        </div>
+      </header>
+      <div ng-repeat="gallery in main.galleries | orderBy:'index'">
+        <h3>{{ gallery.title }}</h3>
+        <a class="gallery__item" href="#" ng-repeat="content in gallery.contents | orderBy:'index'">
+          <h2 class="title title--preview">{{ content.title }}</h2>
+          <div class="loader"></div>
+          <span class="category">Mental Health</span>
+          <div class="meta meta--preview">
+            <img class="meta__avatar" ng-src="{{ content.url }}" alt="{{ content.title }}" /> 
+            <span class="meta__date"><i class="fa fa-calendar-o"></i> 6 Apr</span>
+            <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 2 min read</span>
+          </div>
+        </a>
       </div>
-    </div>
+      <footer class="page-meta">
+        <!-- ... -->
+      </footer>
+    </section><!-- /galleries -->
+    <section class="content">
+      <div class="scroll-wrap">
+        <article class="content__item" ng-repeat="content in main.galleries_all_contents">
+          <div class="thumbnail">
+            <img class="pull-right" ng-src="{{ content.url }}" alt="{{ content.title }}">
+            <div class="caption">
+              <h3>{{ content.title }}</h3>
+              <p>{{ content.description }}</p>
+              <p><a ng-href="{{ content.url }}">{{ content.url }}</a></p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <button class="close-button"><i class="fa fa-close"></i><span>Close</span></button>
+      
+    </section><!-- /content -->
   </div>
 
 </div>

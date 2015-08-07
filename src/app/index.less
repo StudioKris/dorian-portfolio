@@ -3,122 +3,168 @@
 // bower:less
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+@item_width: 300px;
+@anim-time: 0.5s;
 
-body {
-  margin: 0;
-}
+@color_primary: #000000;
+@color_secondary: rgb(40, 36, 88);
+@color_link: #81c483;
 
-a {
-  text-decoration: none;
-}
-
-.container {
-  width: 1170px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.navbar {
+.gallery__item {
   position: relative;
-  min-height: 50px;
-  margin-bottom: 20px;
-  background-color: #222;
-
-  &>a {
-    float: left;
-    color: lightgrey;
-    padding: 15px 15px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 50px;
-  }
-
-  ul {
-    float: left;
-    padding: 0;
-    margin: 0;
-
-    li {
-      float: left;
-      position: relative;
-      display: block;
-
-      a {
-        color: white;
-        position: relative;
-        display: block;
-        padding: 15px;
-        line-height: 20px;
-      }
-      &.active a {
-        background-color: black;
-      }
-    }
-  }
-}
-
-.jumbotron {
-  padding: 60px;
-  margin-bottom: 30px;
-  background-color: gainsboro;
-  border-radius: 6px;
-  text-align: center;
-}
-
-.btn {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
+  color: inherit;
+  background: @color_secondary;
+  min-height: @item_width;
   cursor: pointer;
-  border: 1px solid transparent;
-  color: white;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 6px;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
-.col {
-  float: left;
-  width: 33.33%;
-  position: relative;
-  padding-left: 15px;
-  padding-right: 15px;
-  box-sizing: border-box;
+/* Viewport sizes based on column number and sidebar */
+@viewport_xs:   @item_width; /* 1 column */
+@viewport_s:  (@item_width * 2); /* 2 columns */
+@viewport_m:  (@item_width * 3); /* 3 columns */
+@viewport_l:  (@item_width * 4); /* 4 columns */
+@viewport_xl:   (@item_width * 5); /* 5 columns */
+@viewport_xxl:  (@item_width * 6); /* 6 columns */
 
-  .thumbnail {
-    height: 200px;
-    border: 1px solid lightgrey;
-    border-radius: 4px;
-    margin-bottom: 20px;
+@media screen and (min-width: @viewport_xs) {
+  html, 
+  body, 
+  .container, 
+  .portfolio {
+    height: 100vh;
+  }
 
-    .caption {
-      padding: 9px;
-    }
+  .portfolio {
+    height: 100%;
+  }
 
-    img.pull-right {
-      width: 50px;
-    }
+  .content__item {
+    font-size: 1em;
+  }
+
+  .gallery__item {
+    padding: 45px 45px 30px;
   }
 }
 
-.pull-right {
-  float: right;
+@media screen and (min-width: @viewport_s) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* 2 columns */
+  .gallery__item {
+    width: 50%;
+    border: none;
+  }
+
+  .gallery__item::before {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    border: 1px solid rgba(74,74,74,0.075);
+    transition: opacity 0.3s;
+  }
+
+  .gallery__item:hover::before,
+  .gallery__item:focus::before {
+    border: 3px solid rgba(129,196,131,0.5);
+  }
+
+  .gallery__item--loading.gallery__item::before {
+    opacity: 0;
+  }
 }
 
-hr {
-  clear: both;
+@media screen and (min-width: @viewport_m) {
+  /* 3 columns */
+  .gallery__item {
+    width: 33.333%;
+  }
 }
+
+@media screen and (min-width: @viewport_l) {
+  /* 4 columns */
+  .gallery__item {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: @viewport_xl) {
+  /* 5 columns */
+  .gallery__item {
+    width: 20%;
+  }
+}
+
+@media screen and (min-width: @viewport_xxl) {
+  /* 6 columns */
+  .gallery__item {
+    width: 16.66%;
+  }
+}
+
+/* small screen changes for sidebar (it becomes an off-canvas menu) */
+@media screen and (max-width: @viewport_xs - 1px) {
+  .sidebar {
+    transform: translate3d(-100%,0,0);
+  }
+  .sidebar.sidebar--open {
+    transform: translate3d(0,0,0);
+  }
+  .sidebar.sidebar--open ~ .portfolio {
+    pointer-events: none;
+  }
+  .top-bar {
+    padding: 22px 15px 10px 60px;
+  }
+  .menu-toggle {
+    display: inline-block;
+  }
+  .sidebar .close-button {
+    opacity: 1;
+    top: 15px;
+    right: 15px;
+    pointer-events: auto;
+  }
+  .title--full {
+    font-size: 2em;
+  }
+  .content__item {
+    padding: 80px 20px 40px;
+  }
+  .close-button {
+    padding: 10px 20px;
+  }
+  .close-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: @color_secondary;
+    border-bottom: 1px solid @color_primary;
+    width: 100vw;
+    height: 50px;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+
 
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
    all your less files automatically */

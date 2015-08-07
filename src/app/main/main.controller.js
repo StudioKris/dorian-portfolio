@@ -1,15 +1,22 @@
 class MainController {
-  constructor ($timeout, webDevTec, toastr, gallery) {
+  constructor ($timeout, toastr, gallery) {
     'ngInject';
 
-    this.awesomeThings = [];
     this.galleries = [];
+    this.galleries_all_contents = [];
     this.classAnimation = '';
     this.creationDate = 1438525681651;
     this.toastr = toastr;
 
-    this.activate($timeout, webDevTec);
     this.activate($timeout, gallery);
+  }
+
+  getGalleries(gallery) {
+    var self = this;
+    this.galleries = gallery.getGalleries();
+    angular.forEach(this.galleries, function(gallery) {
+      self.galleries_all_contents = self.galleries_all_contents.concat(gallery.contents);
+    });
   }
 
   activate($timeout, gallery) {
@@ -17,25 +24,6 @@ class MainController {
     $timeout(() => {
       this.classAnimation = 'rubberBand';
     }, 4000);
-  }
-
-  getGalleries(gallery) {
-    this.galleries = gallery.getGalleries();
-  }
-
-  activate($timeout, webDevTec) {
-    this.getWebDevTec(webDevTec);
-    $timeout(() => {
-      this.classAnimation = 'rubberBand';
-    }, 4000);
-  }
-
-  getWebDevTec(webDevTec) {
-    this.awesomeThings = webDevTec.getTec();
-
-    angular.forEach(this.awesomeThings, (awesomeThing) => {
-      awesomeThing.rank = Math.random();
-    });
   }
 
   showToastr() {
