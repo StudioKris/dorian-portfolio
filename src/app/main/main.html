@@ -9,25 +9,27 @@
       </header>
       <div class="gallery" ng-repeat="gallery in main.galleries | orderBy:'index'">
         <h3>{{ gallery.title }}</h3>
-        <div class="gallery-item" ng-repeat="content in gallery.contents | orderBy:'index'" ng-click="main.openItem($event)">
-          <div class="item-container">
-            <div class="loader"></div>
-            <!-- <img class="image" ng-src="{{ content.url }}" alt="{{ content.title }}" /> -->
-            <svg class="image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <clipPath id="clipPath">
-                  <!-- r = 992 = hyp = Math.sqrt(960*960+250*250) -->
-                  <circle class="clip" cx="100" cy="100" r="100"></circle>
-                </clipPath>
-              </defs>
-              <image clip-path="url(#clipPath)" width="200" height="200" xlink:href="http://orig12.deviantart.net/758d/f/2015/217/1/5/you_can_not__redo_by_raikoart-d93ufkp.png"></image>
-            </svg>
-            <div class="content">
-              <div class="caption">
-                <div class="title">{{ content.title }}</div>
+        <div class="wrapper">
+          <div class="gallery-item" ng-repeat="content in gallery.contents | orderBy:'index'" ng-click="main.openItem($event)">
+            <div class="item-container">
+              <div class="loader"></div>
+              <!-- <img class="image" ng-src="{{ content.url }}" alt="{{ content.title }}" /> -->
+              <svg class="image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1366 838" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <clipPath id="clipPath">
+                    <!-- r = 992 = hyp = Math.sqrt(960*960+250*250) -->
+                    <circle class="clip" cx="683" cy="417" r="838"></circle>
+                  </clipPath>
+                </defs>
+                <image clip-path="url(#clipPath)" width="1366" height="838" xlink:href="{{ content.url }}"></image>
+              </svg>
+              <div class="content">
+                <div class="caption">
+                  <div class="title">{{ content.title }}</div>
+                </div>
+                <button class="close-button" ng-click="main.closeItem($event)"><i class="fa fa-close"></i><span>Close</span></button>
+                <p>{{ content.description }}</p>
               </div>
-              <button class="close-button" ng-click="main.closeItem($event)"><i class="fa fa-close"></i><span>Close</span></button>
-              <p>{{ content.description }}</p>
             </div>
           </div>
         </div>
