@@ -3,20 +3,17 @@ class MainController {
     'ngInject';
 
     this.galleries = [];
-    this.galleries_all_contents = [];
     this.classAnimation = '';
     this.creationDate = 1438525681651;
     this.toastr = toastr;
+
+    this.currentItem = null;
 
     this.activate($timeout, gallery);
   }
 
   getGalleries(gallery) {
-    var self = this;
     this.galleries = gallery.getGalleries();
-    angular.forEach(this.galleries, function(gallery) {
-      self.galleries_all_contents = self.galleries_all_contents.concat(gallery.contents);
-    });
   }
 
   activate($timeout, gallery) {
@@ -29,6 +26,17 @@ class MainController {
   showToastr() {
     this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
     this.classAnimation = '';
+  }
+
+  openItem($event) {
+    $event.stopPropagation();
+    this.currentItem = angular.element($event.currentTarget);
+    this.currentItem.addClass('item-opened');
+  }
+
+  closeItem($event) {
+    $event.stopPropagation();
+    this.currentItem.removeClass('item-opened');
   }
 }
 
