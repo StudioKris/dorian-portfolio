@@ -9,6 +9,7 @@ import GithubContributorService from '../app/components/githubContributor/github
 import GalleryService from '../app/components/gallery/gallery.service';
 import NavbarDirective from '../app/components/navbar/navbar.directive';
 import VBoxDirective from '../app/components/svg/vbox.directive';
+import GalleryItemDirective from '../app/components/gallery/galleryItem.directive';
 
 angular.module('dorianPortfolio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router'])
   .constant('toastr', toastr)
@@ -22,6 +23,7 @@ angular.module('dorianPortfolio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanit
   .service('gallery', GalleryService)
   .controller('MainController', MainController)
   .directive('acmeNavbar', () => new NavbarDirective())
-  .directive('vbox', () => new VBoxDirective());
+  .directive('vbox', () => new VBoxDirective())
+  .directive('kGalleryItem', () => new GalleryItemDirective());
 
 
