@@ -1,4 +1,4 @@
-<div class="item-container" ng-click="vm.openItem()">
+<div class="item-container" ng-click="vm.openItem($event)">
   <div class="loader"></div>
   <!-- <img class="image" ng-src="{{ content.url }}" alt="{{ content.title }}" /> -->
   <svg class="image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" vbox="0 0 {{ vm.content.width }} {{ vm.content.height }}" preserveAspectRatio="xMidYMid slice">
@@ -14,7 +14,7 @@
     <div class="caption">
       <div class="title">{{ vm.content.title }}</div>
     </div>
-    <button class="close-button" ng-click="vm.closeItem()"><i class="fa fa-close"></i><span>Close</span></button>
+    <button class="close-button" ng-click="vm.closeItem($event)"><i class="fa fa-close"></i><span>Close</span></button>
     <p>{{ vm.content.description }}</p>
   </div>
 </div>

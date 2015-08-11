@@ -9,11 +9,6 @@ k-gallery-item {
   cursor: pointer;
   text-align: center;
 
-  item-container-closed {
-    position: absolute;
-    overflow: hidden;
-  }
-
   .item-container {
     height: @item_width;
     width: @item_width;
@@ -56,11 +51,8 @@ k-gallery-item {
         }
       }
     }
-  }
-
-  &.item-opened {
-    z-index: 1000;
-    .item-container {
+    &.item-opened {
+      z-index: 1000;
       position: fixed;
       top: 0px;
       left: 0px;
@@ -78,6 +70,7 @@ k-gallery-item {
       }
     }
   }
+
   &:hover {
     .item-container .content .caption {
       bottom: (@item_width/3*-1);
