@@ -2,10 +2,10 @@ class MainController {
 	constructor($timeout, toastr, gallery, $window) {
 		'ngInject';
 
-    this.window = $window;
+		this.window = $window;
 
 		this.galleries = [];
-    this.animatedItems = [];
+		this.animatedItems = [];
 
 		this.classAnimation = '';
 		this.creationDate = 1438525681651;
@@ -27,9 +27,9 @@ class MainController {
 		}, 4000);
 	}
 
-  addAnimatedItems(itemController) {
-    this.animatedItems.push(itemController);
-  }
+	addAnimatedItems(itemController) {
+		this.animatedItems.push(itemController);
+	}
 
 	showToastr() {
 		this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
@@ -37,44 +37,54 @@ class MainController {
 	}
 
 	openItem(item) {
-    this.currentItem = item;
+		this._toggleItem(item);
+	}
+
+	closeItem(item) {
+		this._toggleItem(item);
+	}
+
+	_toggleItem(item) {
+		this.currentItem = item;
+		
 		var sequence = new TimelineLite({
 			paused: true
 		});
 
-		var otherItems = this._showHideOtherItems();
+		var otherItems = this._showHideOtherItems(this.currentItem.isOpen);
 
-		sequence.add(otherItems);
-		sequence.add(this.currentItem.showItem());
+		if (this.currentItem.isOpen) {
+			sequence.add(otherItems);
+			sequence.add(this.currentItem.increaseItem());
+		} else {
+			sequence.add(this.currentItem.reduceItem());
+			sequence.add(otherItems);
+		}
 
 		sequence.play();
-
-		//this.currentItem.addClass('item-opened');
 	}
 
-	_showHideOtherItems() {
+	_showHideOtherItems(hide) {
 		var sequence = new TimelineLite();
 
-    /*var rect = this.currentItem.getBoundingClientRect();
-    var midX = rect.left + rect.width / 2;
-    var bottom = this.window.innerHeight;*/
+		/*var rect = this.currentItem.getBoundingClientRect();
+		var midX = rect.left + rect.width / 2;
+		var bottom = this.window.innerHeight;*/
 
 		for (var i in this.animatedItems) {
 			var item = this.animatedItems[i];
 
-      
-
 			if (this.currentItem !== item) {
-				sequence.add(item.hideItem(), '-=0.2');
+				if(hide) {
+					sequence.add(item.hideItem(), '-=0.2');
+				}
+				else {
+					sequence.add(item.showItem(), '-=0.2');
+				}
 			}
 		}
 
 		return sequence;
-	}
-
-	closeItem($event) {
-		$event.stopPropagation();
-		this.currentItem.removeClass('item-opened');
 	}
 }
 

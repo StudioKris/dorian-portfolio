@@ -1,12 +1,12 @@
 class GalleryItemDirective {
-  constructor () {
+  constructor() {
     'ngInject';
 
     let directive = {
       restrict: 'E',
       templateUrl: 'app/components/gallery/galleryItem.html',
       scope: {
-          content: '='
+        content: '='
       },
       controller: GalleryItemController,
       controllerAs: 'vm',
@@ -18,11 +18,14 @@ class GalleryItemDirective {
 }
 
 class GalleryItemController {
-  constructor ($element, $scope, $window, $document) {
+  constructor($element, $scope, $window, $document) {
     'ngInject';
 
     this.window = $window;
     this.document = $document;
+
+    this.isOpen = false;
+    this.sequence = null;
 
     // "this.creation" is avaible by directive option "bindToController: true"
     this.mainController = $scope.$parent.$parent.main;
@@ -36,25 +39,26 @@ class GalleryItemController {
 
   openItem($event) {
     $event.stopPropagation();
+    this.isOpen = true;
     this.mainController.openItem(this);
   }
 
-  showItem() {
+  increaseItem() {
     var slideContentDown = this._slideContentDown();
     var clipImageIn = this._clipImageIn();
     var floatContainer = this._floatContainer();
     var clipImageOut = this._clipImageOut();
     var slideContentUp = this._slideContentUp();
 
-    var sequence = new TimelineLite();
+    this.sequence = new TimelineLite();
 
-    sequence.add(slideContentDown);
-    sequence.add(clipImageIn, 0);
-    sequence.add(floatContainer, '-=' + clipImageIn.duration() * 0.6);
-    sequence.add(clipImageOut, '-=' + floatContainer.duration() * 0.3);
-    sequence.add(slideContentUp, '-=' + clipImageOut.duration() * 0.6);
+    this.sequence.add(slideContentDown);
+    this.sequence.add(clipImageIn, 0);
+    this.sequence.add(floatContainer, '-=' + clipImageIn.duration() * 0.6);
+    this.sequence.add(clipImageOut, '-=' + floatContainer.duration() * 0.3);
+    this.sequence.add(slideContentUp, '-=' + clipImageOut.duration() * 0.6);
 
-    return sequence;
+    return this.sequence;
   }
 
   _slideContentDown() {
@@ -129,8 +133,10 @@ class GalleryItemController {
     return tween;
   }
 
-  closeItem() {
-
+  closeItem($event) {
+    $event.stopPropagation();
+    this.isOpen = false;
+    this.mainController.closeItem(this);
   }
 
   hideItem() {
@@ -141,6 +147,32 @@ class GalleryItemController {
     });
 
     return tween;
+  }
+
+  showItem() {
+    var tween = TweenLite.to(this.element, 0.4, {
+      y: 0,
+      autoAlpha: 1,
+      clearProps: 'all',
+      ease: Expo.easeInOut
+    });
+
+    return tween;
+  }
+
+  reduceItem() {
+
+    this.sequence.eventCallback('onReverseComplete', function() {
+
+      TweenLite.set([this.uiContainer, this.uiContent], {
+        clearProps: 'all'
+      });
+
+      this.document.find('body').removeClass('body-hidden');
+
+    }.bind(this));
+
+    return this.sequence.reverse();
   }
 }
 
