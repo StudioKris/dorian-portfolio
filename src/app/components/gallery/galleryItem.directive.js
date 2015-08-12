@@ -91,7 +91,8 @@ class GalleryItemController {
       x: rect.left,
       y: rect.top,
       position: 'fixed',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      'z-index': 1000
     });
 
     TL.to(this.uiContainer, 2, {
@@ -102,7 +103,7 @@ class GalleryItemController {
       xPercent: -50,
       ease: Expo.easeInOut,
       clearProps: 'all',
-      className: '+=' + 'item-opened'
+      className: '-=' + 'item-closed'
     });
 
     return TL;

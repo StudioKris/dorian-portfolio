@@ -55,9 +55,9 @@ class MainController {
 	_showHideOtherItems() {
 		var sequence = new TimelineLite();
 
-    var rect = this.currentItem.getBoundingClientRect();
+    /*var rect = this.currentItem.getBoundingClientRect();
     var midX = rect.left + rect.width / 2;
-    var bottom = this.window.innerHeight;
+    var bottom = this.window.innerHeight;*/
 
 		for (var i in this.animatedItems) {
 			var item = this.animatedItems[i];
