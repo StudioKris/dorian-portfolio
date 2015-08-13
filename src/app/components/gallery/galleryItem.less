@@ -75,6 +75,22 @@ k-gallery-item {
           -webkit-transition: .4s ease-out;
         }
       }
+      .box{
+  position:absolute;
+  height:50px;
+  width:100%;
+  background-color:red;
+  top:300px;
+}
+.box:after{
+  position:absolute;
+  top:-30px;
+  content:"";
+   height: 0; 
+   width: 0px;
+   border-left: 500px solid red;
+   border-top: 30px solid transparent;
+}
     }
     &.item-closed {
       height: @item_width;
