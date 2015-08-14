@@ -1,23 +1,25 @@
 <div class="item-container item-closed" ng-click="vm.openItem($event)">
-  <div class="loader"></div>
-  <!-- <img class="image" ng-src="{{ content.url }}" alt="{{ content.title }}" /> -->
-  <svg class="image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" vbox="0 0 {{ vm.content.width }} {{ vm.content.height }}" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <clipPath id="clipPath">
-        <!-- r = 992 = hyp = Math.sqrt(960*960+250*250) -->
-        <circle class="clip" cx="{{ vm.content.width/2 }}" cy="{{ vm.content.height/2 }}" r="838"></circle>
-      </clipPath>
-    </defs>
-    <image clip-path="url(#clipPath)" width="100%" height="100%" xlink:href="{{ vm.content.url }}"></image>
-  </svg>
-  <div class="header">
-    <div class="triangle"></div>
-    <div class="close" ng-click="vm.closeItem($event)">X</div>
-  </div>
-  <div class="content">
-    <div class="caption">
-      <div class="title">{{ vm.content.title }}</div>
+  <div class="item-frame" style="max-width: {{ vm.content.width }}px; max-height: {{ vm.content.height }}px;">
+    <div class="loader"></div>
+    <!-- <img class="image" ng-src="{{ content.url }}" alt="{{ content.title }}" /> -->
+    <svg class="image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" vbox="0 0 {{ vm.content.width }} {{ vm.content.height }}" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <clipPath id="clipPath">
+          <!-- r = 992 = hyp = Math.sqrt(960*960+250*250) -->
+          <circle class="clip" cx="{{ vm.content.width/2 }}" cy="{{ vm.content.height/2 }}" r="838"></circle>
+        </clipPath>
+      </defs>
+      <image clip-path="url(#clipPath)" width="100%" height="100%" xlink:href="{{ vm.content.url }}"></image>
+    </svg>
+    <div class="header">
+      <div class="triangle"></div>
+      <div class="close" ng-click="vm.closeItem($event)">X</div>
     </div>
-    <p>{{ vm.content.description }}</p>
+    <div class="content">
+      <div class="caption">
+        <div class="title">{{ vm.content.title }}</div>
+      </div>
+      <p>{{ vm.content.description }}</p>
+    </div>
   </div>
 </div>
