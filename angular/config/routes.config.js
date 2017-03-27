@@ -41,105 +41,90 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('app.tablessimple', {
-      url: '/tables-simple',
+
+    .state('app.categorieslist', {
+      url: '/categories-list',
       data: {
         auth: true
       },
       views: {
         'main@app': {
-          template: '<tables-simple></tables-simple>'
+          template: '<categories-list></categories-list>'
         }
       }
     })
-    .state('app.uiicons', {
-      url: '/ui-icons',
+    .state('app.categoriesadd', {
+      url: '/categories-add',
       data: {
         auth: true
       },
       views: {
         'main@app': {
-          template: '<ui-icons></ui-icons>'
+          template: '<categories-add></categories-add>'
         }
+      },
+      params: {
+        alerts: null
       }
     })
-    .state('app.uimodal', {
-      url: '/ui-modal',
+    .state('app.categoriesedit', {
+      url: '/categories-edit/:categoryId',
       data: {
         auth: true
       },
       views: {
         'main@app': {
-          template: '<ui-modal></ui-modal>'
+          template: '<categories-edit></categories-edit>'
         }
+      },
+      params: {
+        alerts: null,
+        categoryId: null
       }
     })
-    .state('app.uitimeline', {
-      url: '/ui-timeline',
+    //End Categories
+
+    .state('app.assetslist', {
+      url: '/assets-list',
       data: {
         auth: true
       },
       views: {
         'main@app': {
-          template: '<ui-timeline></ui-timeline>'
+          template: '<assets-list></assets-list>'
         }
       }
     })
-    .state('app.uibuttons', {
-      url: '/ui-buttons',
+    .state('app.assetsedit', {
+      url: '/assets-edit/:assetId',
       data: {
         auth: true
       },
       views: {
         'main@app': {
-          template: '<ui-buttons></ui-buttons>'
+          template: '<assets-edit></assets-edit>'
         }
+      },
+      params: {
+        alerts: null,
+        assetId: null
       }
     })
-    .state('app.uigeneral', {
-      url: '/ui-general',
+    //End Assets
+
+    .state('app.profileedit', {
+      url: '/profile-edit',
       data: {
         auth: true
       },
       views: {
         'main@app': {
-          template: '<ui-general></ui-general>'
+          template: '<profile-edit></profile-edit>'
         }
       }
     })
-    .state('app.formsgeneral', {
-      url: '/forms-general',
-      data: {
-        auth: true
-      },
-      views: {
-        'main@app': {
-          template: '<forms-general></forms-general>'
-        }
-      }
-    })
-    .state('app.chartjs', {
-      url: '/charts-chartjs',
-      data: {
-        auth: true
-      },
-      views: {
-        'main@app': {
-          template: '<charts-chartjs></charts-chartjs>'
-        }
-      }
-    })
-    .state('app.comingsoon', {
-      url: '/comingsoon',
-      data: {
-        auth: true
-      },
-      views: {
-        'main@app': {
-          template: '<coming-soon></coming-soon>'
-        }
-      }
-    })
+    //End Profile
+
     .state('app.profile', {
       url: '/profile',
       data: {
@@ -258,17 +243,6 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
       params: {
         alerts: null,
         roleId: null
-      }
-    })
-    .state('app.widgets', {
-      url: '/widgets',
-      data: {
-        auth: true
-      },
-      views: {
-        'main@app': {
-          template: '<widgets></widgets>'
-        }
       }
     })
     .state('login', {

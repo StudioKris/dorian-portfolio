@@ -27,6 +27,15 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('auth/password/email', 'Auth\PasswordResetController@sendResetLinkEmail');
     $api->get('auth/password/verify', 'Auth\PasswordResetController@verify');
     $api->post('auth/password/reset', 'Auth\PasswordResetController@reset');
+    
+    $api->get('assets/', 'AssetsController@getAssetsIndex');
+    $api->get('assets/{id}', 'AssetsController@getAssetsShow')->where('id', '[0-9]+');
+    
+    $api->get('categories/', 'CategoriesController@getCategoriesIndex');
+    $api->get('categories/{id}', 'CategoriesController@getCategoriesShow')->where('id', '[0-9]+');
+
+    $api->get('profile/', 'ProfileController@getProfileShow');
+    $api->get('profile/{id}', 'ProfileController@getProfileShow')->where('id', '[0-9]+');
 });
 
 $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
@@ -36,4 +45,23 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
 $api->group(['middleware' => ['api', 'api.auth', 'role:admin.super|admin.user']], function ($api) {
     $api->controller('users', 'UserController');
+
+    $api->get('assets/upload', 'AssetsController@postAssets');
+    $api->post('assets/upload', 'AssetsController@postAssets');
+
+    $api->get('categories/upload/{id}', 'CategoriesController@postIcon')->where('id', '[0-9]+');
+    $api->post('categories/upload/{id}', 'CategoriesController@postIcon')->where('id', '[0-9]+');
+
+    $api->get('profile/upload', 'ProfileController@postIcon')->where('id', '[0-9]+');
+    $api->post('profile/upload', 'ProfileController@postIcon')->where('id', '[0-9]+');
+    
+    $api->post('assets', 'AssetsController@postAssets');
+    $api->put('assets/{id}', 'AssetsController@putAssetsShow')->where('id', '[0-9]+');
+    $api->delete('assets/{id}', 'AssetsController@deleteAssets')->where('id', '[0-9]+');
+
+    $api->post('categories', 'CategoriesController@postCategories');
+    $api->put('categories/{id}', 'CategoriesController@putCategoriesShow')->where('id', '[0-9]+');
+    $api->delete('categories/{id}', 'CategoriesController@deleteCategories')->where('id', '[0-9]+');
+
+    $api->put('profile/{id}', 'ProfileController@putProfileShow')->where('id', '[0-9]+');
 });
