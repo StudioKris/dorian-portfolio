@@ -1,0 +1,47 @@
+@import "./angular/material/portfolio";
+
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
+  background-color: $background;
+}
+.wrapper > div {
+  display: flex; /* crée un contexte flex pour ses enfants */
+  flex-direction: column; /* affichage vertical */
+  min-height: 100vh; /* toute la hauteur du viewport (compatible IE9+) */
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+header {
+  height: $header-height;
+  background-color: $light-background;
+  border-bottom : 3px solid $big-border;
+}
+
+.navbar-inverse {
+  background-color: $light-background;
+}
+
+/*
+ * Main content
+ */
+.portfolio-wrapper {
+  display: block; /* IE fix */
+  flex: 1 1 auto; /* occupe la hauteur restante */
+  display: flex; /* crée un contexte flex pour ses enfants */
+  flex-direction: row; /* affichage horizontal */
+}
+
+/*
+ * Footer
+ */
+footer {
+  height: $footer-height;
+}

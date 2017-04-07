@@ -1,0 +1,21 @@
+<div class="sidebar">
+	<ul class="nav nav-sidebar">
+		<li ng-repeat="category in vm.Portfolio.categories">
+			<a href="#">{{category.name}}</a>
+		</li>
+	</ul>
+</div>
+<div class="portfolio-content">
+	<div class="placeholder" ng-repeat="category in vm.Portfolio.categories" ng-style="{'background-image':'url('+category.assets[0].path+')'}">
+		<div class="placeholder-label">
+			<h4>{{category.name}}</h4>
+			<span class="text-muted" ng-bind-html="category.description"></span>
+		</div>
+	</div>
+	<div class="placeholder" ng-style="{'background-image':'url('+vm.Portfolio.profile.icon+')'}">
+		<div class="placeholder-label">
+			<h4>{{vm.Portfolio.profile.name}}</h4>
+			<span class="text-muted" ng-bind-html="vm.Portfolio.profile.description"></span>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,51 @@
+ul[dnd-list], ul[dnd-list] > li {
+    position: relative;
+}
+
+ul[dnd-list] {
+	min-height: 45px;
+}
+
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+ul[dnd-list] .dndPlaceholder {
+    display: block;
+    min-height: 90px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+ul[dnd-list] li {
+    display: block;
+}
+
+.info-box-trash {
+	position: relative;
+    bottom: -33px;
+    right: 4px;
+    float: right;
+}
+
+
+.content-list, .asset-list {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.asset-list {
+    width: 200px;
+}
+
+.content-list {
+    
+}

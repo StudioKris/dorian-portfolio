@@ -1,0 +1,17 @@
+.mailbox-attachment-icon.has-img {
+    height: 131px;
+}
+
+.mailbox-attachment-icon.has-img>img {
+    max-height: 100%;
+}
+
+.mailbox-attachment-info {
+    height: 67px;
+}
+
+.mailbox-attachment-name {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

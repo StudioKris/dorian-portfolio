@@ -1,0 +1,102 @@
+@import "./angular/material/portfolio";
+
+categories-view {
+  display: block; /* IE fix */
+  flex: 1; /* occupe la largeur restante */
+  display: flex; /* crée un contexte flex pour ses enfants */
+  flex-direction: row; /* affichage horizontal */
+}
+
+
+.portfolio-content {
+  display: block; /* IE fix */
+  flex: 1; /* occupe la largeur restante */
+}
+@media (min-width: 768px) {
+  .portfolio-content {
+    display: block; /* IE fix */
+    padding: 20px;
+    flex: 1; /* occupe la largeur restante */
+    display: flex;
+  }
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholder {
+  display: block; /* IE fix */
+  flex: 1; /* occupe la largeur restante */
+  
+  border-right: 10px solid red;
+ 
+  overflow: hidden;
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*grayscale for background image*/
+
+  background-color: #FFF;
+  background-blend-mode: luminosity, normal;
+  transition: all $animation-duration ease-in-out;
+
+  position: relative;
+  
+}
+
+.placeholder:hover,
+.placeholder:focus {
+  background-color: transparent;
+}
+
+.placeholder .placeholder-label {
+  background-color: red;
+  padding: 20px;
+  display: block;
+  position: absolute;
+  height: $pf-label-height;
+  width: 100%;
+  bottom: $pf-label-bottom;
+  transform: translateX(-100%);
+  transition: all $animation-duration;
+}
+.placeholder:hover .placeholder-label {
+  transform: translateX(0px);
+}
+
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    width: $sidebar-width;
+    display: block;
+    padding: 20px;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}

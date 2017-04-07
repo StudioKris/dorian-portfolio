@@ -27,36 +27,65 @@ elixir(function (mix) {
   var fontsOutputFolder = config.fonts.outputFolder
   var buildPath = config.buildPath
 
+  var adminFolder = './angular-admin/'
+  var indexFolder = './angular/'
+
   var assets = [
+      'public/js/admin-final.js',
       'public/js/final.js',
+      'public/css/admin-final.css',
       'public/css/final.css'
     ],
-    scripts = [
+
+    adminScripts = [
+      './public/js/vendor.js',
+      './public/js/partials.js',
+      './public/js/admin-app.js',
+      './public/dist/js/admin-app.js'
+    ],
+    adminStyles = [
+      './public/css/vendor.css',
+      './public/css/admin-app.css'
+    ],
+
+    indexScripts = [
       './public/js/vendor.js',
       './public/js/partials.js',
       './public/js/app.js',
       './public/dist/js/app.js'
     ],
-    styles = [
+    indexStyles = [
       './public/css/vendor.css',
       './public/css/app.css'
     ],
+
     karmaJsDir = [
       jsOutputFolder + '/vendor.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/ng-describe/dist/ng-describe.js',
       jsOutputFolder + '/partials.js',
       jsOutputFolder + '/app.js',
+      jsOutputFolder + '/admin-app.js',
       'tests/angular/**/*.spec.js'
   ]
 
   mix
     .bower()
-    .angular('./angular/')
-    .ngHtml2Js('./angular/**/*.html')
-    .concatScripts(scripts, 'final.js')
-    .sass('./angular/**/*.scss', 'public/css')
-    .styles(styles, './public/css/final.css')
+    
+    /* admin */
+    .angular(adminFolder, 'admin')
+    .ngHtml2Js(adminFolder + '**/*.html')
+    .concatScripts(adminScripts, 'admin-final.js')
+    .sass(adminFolder + '**/*.scss', 'public/css/admin-app.css')
+    .styles(adminStyles, './public/css/admin-final.css')
+    
+    /* portfolio */
+    // .angular(indexFolder, 'index')
+    // .ngHtml2Js(indexFolder + '**/*.html')
+    // .concatScripts(indexScripts, 'final.js')
+    // .sass(indexFolder + '**/*.scss', 'public/css')
+    // .styles(indexStyles, './public/css/final.css')
+
     .version(assets)
     .browserSync({
       proxy: 'localhost:8000'

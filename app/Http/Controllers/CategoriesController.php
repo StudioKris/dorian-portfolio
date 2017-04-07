@@ -35,11 +35,9 @@ class CategoriesController extends Controller
         if ($request->has('data.position')) {
             if ($request->input('data.position') == '-') {
                 $category->position -= 1;
-            }
-            elseif ($request->input('data.position') == '+') {
+            } elseif ($request->input('data.position') == '+') {
                 $category->position += 1;
-            }
-            else {
+            } else {
                 $category->position = $request->input('data.position');
             }
         }
@@ -106,7 +104,6 @@ class CategoriesController extends Controller
             }
         }
         if ($file->validateFile()) {
-
             $category = Category::find($id);
 
             $finalPath = 'assets/categories/'.$category->id;

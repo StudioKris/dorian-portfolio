@@ -11,10 +11,10 @@ var webpackConfig = require('../webpack.config.js')
 var Elixir = require('laravel-elixir')
 var Task = Elixir.Task
 
-Elixir.extend('angular', function (src, output, outputFilename) {
+Elixir.extend('angular', function (src, site, output, outputFilename) {
   var baseDir = src || Elixir.config.assetsPath + '/angular/'
   new Task('angular in ' + baseDir, function () {
-    return gulp.src([baseDir + 'index.main.js', baseDir + '**/*.*.js'])
+    return gulp.src([baseDir + site +'.main.js', baseDir + '**/*.*.js'])
       .pipe(eslint({
         globals: {
           'jQuery': false,
@@ -24,7 +24,7 @@ Elixir.extend('angular', function (src, output, outputFilename) {
       }))
       .pipe(eslint.format())
       .pipe(gulpif(!config.production, sourcemaps.init()))
-      .pipe(webpack(webpackConfig))
+      .pipe(webpack(webpackConfig[site]))
       .pipe(ngAnnotate())
       .pipe(gulpif(config.production, uglify()))
       .pipe(gulpif(!config.production, sourcemaps.write()))

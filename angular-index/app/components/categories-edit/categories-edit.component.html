@@ -1,0 +1,141 @@
+<section class="content-header">
+  <h1>Categories <small>website's categories</small></h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="app.landing"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a ui-sref="app.categorieslist">Categories</a></li>
+    <li class="active">Edit Category</li>
+  </ol>
+</section>
+<section class="content"
+  flow-init="flowOptions"
+  flow-name="vm.flow"
+  flow-files-submitted="$flow.upload()"
+  flow-complete="vm.onUploadComplet()"
+  flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+  >
+  <div ng-if="vm.alerts" class="alert alert-{{alert.type}}" ng-repeat="alert in vm.alerts"  >
+    <h4>{{alert.title}}</h4>
+    <p>{{alert.msg}}</p>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-body box-profile">
+          <span class="profile-user-img img-responsive img-circle" ng-style="{'background-image':'url('+vm.category.data.icon+')'}" flow-btn flow-attrs="{accept:'image/*'}"></span>
+          <h3 class="profile-username text-center">{{vm.category.data.name}}</h3>
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Name</b> <a class="pull-right">{{vm.category.data.name}}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Picture</b> <span class="btn btn-success btn-xs pull-right" flow-btn flow-attrs="{accept:'image/*'}">  <i class="fa fa-upload"></i> Change</span>
+            </li>
+          </ul>
+          <button type="submit" class="btn btn-primary btn-block"><b>Update</b></button>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-9">
+      <uib-tabset class="nav-tabs-custom">
+      
+      <uib-tab class="tab-content" id="user-info" index="0" heading="Informations">
+      <form class="form-horizontal" name="profileForm" ng-submit="vm.save(profileForm.$valid)" novalidate>
+        <div class="form-group" ng-class="{ 'has-error': profileForm.name.$invalid && ( vm.  formSubmitted || profileForm.name.$touched) }">
+          <label for="inputName" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="vm.category.data.name" name="name" placeholder="Name" required>
+            <p ng-show="profileForm.name.$error.required && ( vm.formSubmitted || profileForm.  name.$touched)" class="help-block">Name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Position</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" ng-model="vm.category.data.position" name="position" placeholder="Position" min="0" max="9999" step="1" value="50">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary pull-right"><b>Update</b></button>
+          </div>
+        </div>
+      </form>
+      </uib-tab>
+      <uib-tab class="tab-content" index="1" heading="Description">
+      <form class="form-horizontal" name="profileForm" ng-submit="vm.save(profileForm.$valid)" novalidate>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <wysiwyg textarea-class="form-control" ng-model="vm.category.data.description"></wysiwyg>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary pull-right"><b>Update</b></button>
+          </div>
+        </div>
+      </form>
+      </uib-tab>
+      <uib-tab class="tab-content" index="2" heading="Content">
+      <div class="row">
+        <div class="content-list">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Category Assets</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <ul dnd-list="vm.category.data.assets" class="no-padding">
+                <li ng-repeat="asset in vm.category.data.assets"
+                  dnd-draggable="asset"
+                  dnd-effect-allowed="move"
+                  dnd-moved="vm.category.data.assets.splice($index, 1)">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-aqua" ng-style="{'background-image':'url('+asset.path+')'}"></span>
+                    <span class="info-box-trash"><a class="btn btn-danger btn-xs" ng-click="vm.category.data.assets.splice($index, 1)"><i class="fa fa-trash"></i></a></span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="asset-list">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Assets Library</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" flow-drop>
+              <ul class="no-padding">
+                <li ng-repeat="asset in vm.assets"
+                  dnd-draggable="asset"
+                  dnd-effect-allowed="copy"
+                  dnd-copied="asset.new = true">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-aqua" ng-style="{'background-image':'url('+asset.path+')'}"></span>
+                  </div>
+                </li>
+              </ul>
+              
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      </uib-tab>
+      </uib-tabset>
+    </div>
+    <!-- /.nav-tabs-custom -->
+  </div>
+  <!-- /.col -->
+</div>
+</section>

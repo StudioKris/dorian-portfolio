@@ -48,7 +48,6 @@ class ProfileController extends Controller
             }
         }
         if ($file->validateFile()) {
-
             $profile = Profile::find(1);
 
             $finalPath = 'assets/profile/1';
