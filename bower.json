@@ -12,8 +12,8 @@
   ],
   "dependencies": {
     "jquery": "^2.2.3",
-    "angular": "~1.5.x",
-    "angular-ui-router": "~0.2.15",
+    "angular": "~1.6.x",
+    "angular-ui-router": "~0.3.2",
     "ngstorage": "~0.3.10",
     "restangular": "~1.5.2",
     "angular-loading-bar": "~0.9.0",
@@ -32,6 +32,7 @@
     "angular-wysiwyg": "^1.2.4"
   },
   "resolutions": {
-    "angular": "~1.5.x"
+    "angular": "~1.6.x",
+    "jquery": "^2.2.3"
   }
 }
